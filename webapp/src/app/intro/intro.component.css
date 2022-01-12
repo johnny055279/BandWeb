@@ -1,0 +1,49 @@
+.container{
+    height: 100vh;
+    position: relative;
+    background-color: transparent;
+    background: url(../../assets/image/intro.jpeg) 0 0 no-repeat;
+    background-size: cover;
+}
+.tracking-in-expand {
+	-webkit-animation: tracking-in-expand 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s both;
+	        animation: tracking-in-expand 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) 1s both;
+}
+
+@-webkit-keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
+    40% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes tracking-in-expand {
+    0% {
+        letter-spacing: -0.5em;
+        opacity: 0;
+    }
+    40% {
+        opacity: 0.6;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.start{
+    position: absolute;
+    color: white;
+    border-color: gainsboro;
+    font-size: 24px;
+    width: 105px;
+    height: 38px;
+    bottom: 100px;
+    left: calc(50% - (105px / 2));
+}
+
+  

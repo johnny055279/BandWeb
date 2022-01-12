@@ -1,0 +1,31 @@
+<div class="container">
+  <nav class="navbar">
+    <ul>
+        <li><a class="nav-item" mat-button (click)="scrollTo('home')">Home</a></li>
+        <li><a class="nav-item" mat-button (click)="scrollTo('about')">About</a></li>
+        <li><a class="nav-item" mat-button (click)="scrollTo('tour')">TOUR</a></li>
+        <li><a class="nav-item" mat-button (click)="scrollTo('shop')">SHOP</a></li>
+    </ul>
+  </nav>
+  <div id="parentDiv" appScrollSpy [spiedTags]="['section']" (sectionChange)="onSectionChange($event)">
+	<section id="home" class="section">
+		<h1>Welcome To My Site</h1>
+		<p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>
+	</section>
+	<section id="about" class="section">
+		<h1>About</h1>
+		<p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>
+	</section>
+	<section id="tour" class="section">
+		<h1>Tour</h1>
+		<p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>
+		<a mat-button routerLink="/tour">Get Tickets</a>
+	</section>
+	<section id="shop" class="section">
+		<h1>Contact</h1>
+		<p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>
+		<a mat-button routerLink="/shop">Go Shopping</a>
+	</section>
+  </div>
+  
+</div>
