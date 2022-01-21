@@ -14,6 +14,7 @@ using AutoMapper;
 
 namespace webapi.Controllers
 {
+ 
     public class AccountController : Controller
     {
         private readonly SignInManager<AppUser> signInManager;
@@ -37,19 +38,39 @@ namespace webapi.Controllers
 
 
         [HttpPost("register")]
-        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
+        public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerDto)
         {
             if (await CheckUserExist(registerDto.UserName, registerDto.Email)) return BadRequest("Email or username is taken!");
 
             var user = mapper.Map<AppUser>(registerDto);
 
-            var result = await userManager.CreateAsync(user);
+            var result = await userManager.CreateAsync(user, registerDto.Password);
 
             if (!result.Succeeded) return BadRequest(result.Errors);
 
-            var roleResult = await userManager.AddToRoleAsync(user, "Member");
+            var roleResult = await userManager.AddToRoleAsync(user, "Admin");
 
             if(!roleResult.Succeeded) return BadRequest(result.Errors);
+
+            return new UserDto
+            {
+                UserName = user.UserName,
+                Gender = user.Gender,
+                NickName = user.NickName,
+                Token = await tokenServices.CreateToken(user)
+            };
+        }
+
+        [HttpPost("login")]
+        public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
+        {
+            var user = await userManager.FindByNameAsync(loginDto.Account);
+
+            if (user == null) return Unauthorized("User is not exist");
+
+            var result = await signInManager.CheckPasswordSignInAsync(user, loginDto.Password, false);
+
+            if (!result.Succeeded) return Unauthorized("Login failed");
 
             return new UserDto
             {

@@ -10,6 +10,8 @@ namespace webapi.Helper
         public AutoMapHelper()
         {
             CreateMap<RegisterDto, AppUser>();
+
+            CreateMap<TicketDto, Ticket>();
         }
     }
 }

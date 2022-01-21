@@ -3,8 +3,10 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using webapi.Data;
+using webapi.Helper;
 using webapi.Interfaces;
 using webapi.Service;
+using System.Text.Json;
 
 namespace webapi.Extensions
 {
@@ -14,6 +16,8 @@ namespace webapi.Extensions
         {
             // inject token services
             services.AddScoped<ITokenServices, TokenServices>();
+
+            services.AddAutoMapper(typeof(AutoMapHelper).Assembly);
 
             services.AddDbContext<DataContext>(option =>
             {

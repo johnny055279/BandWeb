@@ -21,7 +21,7 @@ namespace webapi.Service
 
         public TokenServices(IConfiguration configuration, UserManager<AppUser> userManager)
         {
-            this.symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["JWT"]));
+            this.symmetricSecurityKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"]));
 
             this.userManager = userManager;
         }
@@ -39,7 +39,7 @@ namespace webapi.Service
 
             claims.AddRange(roles.Select(n => new Claim(ClaimTypes.Role, n)));
 
-            var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.Sha256);
+            var signingCredentials = new SigningCredentials(symmetricSecurityKey, SecurityAlgorithms.HmacSha512Signature);
 
             var tokenDescriptor = new SecurityTokenDescriptor
             {

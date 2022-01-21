@@ -12,6 +12,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using webapi.Extensions;
+using System.Text;
 
 namespace webapi
 {
@@ -28,7 +29,10 @@ namespace webapi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(option => {
+                option.JsonSerializerOptions.PropertyNamingPolicy = null;
+            });
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "webapi", Version = "v1" });
@@ -37,6 +41,10 @@ namespace webapi
 
             // inject extensions
             services.AddAppServicesExtension(Configuration);
+
+            services.AddIdentityServices(Configuration);
+
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
