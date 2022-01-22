@@ -22,17 +22,17 @@ namespace webapi.Data
         {
             base.OnModelCreating(modelBuilder);
 
-            modelBuilder.Entity<AppUser>().HasMany(n => n.UserRoles).WithOne(n => n.User).HasForeignKey(n => n.UserId).IsRequired();
+            modelBuilder.Entity<AppUser>().HasMany(n => n.UserRoles).WithOne(n => n.User).HasForeignKey(n => n.UserId).IsRequired().OnDelete(DeleteBehavior.Cascade); ;
 
-            modelBuilder.Entity<AppRole>().HasMany(n => n.UserRoles).WithOne(n => n.Role).HasForeignKey(n => n.RoleId).IsRequired();
+            modelBuilder.Entity<AppRole>().HasMany(n => n.UserRoles).WithOne(n => n.Role).HasForeignKey(n => n.RoleId).IsRequired().OnDelete(DeleteBehavior.Cascade); ;
 
-            modelBuilder.Entity<AppUser>().HasMany(n => n.PostComments).WithOne(n => n.User).HasForeignKey(n => n.Id).IsRequired();
+            modelBuilder.Entity<AppUser>().HasMany(n => n.PostComments).WithOne(n => n.User).HasForeignKey(n => n.Id).IsRequired().OnDelete(DeleteBehavior.Cascade); ;
 
-            modelBuilder.Entity<AppUser>().HasMany(n => n.PostLikes).WithOne(n => n.User).HasForeignKey(n => n.Id).IsRequired();
+            modelBuilder.Entity<AppUser>().HasMany(n => n.PostLikes).WithOne(n => n.User).HasForeignKey(n => n.Id).IsRequired().OnDelete(DeleteBehavior.Cascade); ;
 
-            modelBuilder.Entity<PostComment>().HasOne(n => n.Post).WithMany(n => n.PostComment).IsRequired();
+            modelBuilder.Entity<Post>().HasMany(n => n.PostComment).WithOne(n => n.Post).IsRequired().OnDelete(DeleteBehavior.Cascade);
 
-            modelBuilder.Entity<PostLike>().HasOne(n => n.Post).WithMany(n => n.PostLike).IsRequired();
+            modelBuilder.Entity<Post>().HasMany(n => n.PostLike).WithOne(n => n.Post).IsRequired().OnDelete(DeleteBehavior.Cascade);
         }
     }
 }

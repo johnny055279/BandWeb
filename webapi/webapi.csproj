@@ -17,6 +17,7 @@
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="6.0.1" />
     <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="11.0.0" />
+    <PackageReference Include="Quartz.AspNetCore" Version="3.3.3" />
   </ItemGroup>
 
   <ItemGroup>
@@ -35,6 +36,9 @@
     <None Remove="AutoMapper" />
     <None Remove="AutoMapper.Extensions.Microsoft.DependencyInjection" />
     <None Remove="Filters\" />
+    <None Remove="Quartz.AspNetCore" />
+    <None Remove="ScheduleJobs\" />
+    <None Remove="Migrations\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />
@@ -44,5 +48,7 @@
     <Folder Include="DTOs\" />
     <Folder Include="Helper\" />
     <Folder Include="Filters\" />
+    <Folder Include="ScheduleJobs\" />
+    <Folder Include="Migrations\" />
   </ItemGroup>
 </Project>

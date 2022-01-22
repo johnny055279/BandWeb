@@ -48,11 +48,11 @@ namespace webapi.Repositories
             return mapper.Map<IEnumerable<TicketDto>>(tickets);
         }
 
-        public async Task UpdateTicket(TicketDto ticketDto)
+        public async Task UpdateTicket(int id, TicketUpdateDto ticketUpdateDto)
         {
-            var ticket = await dataContext.Tickets.FindAsync(ticketDto.Id);
+            var ticket = await dataContext.Tickets.FindAsync(id);
 
-            mapper.Map(ticketDto, ticket);
+            mapper.Map(ticketUpdateDto, ticket);
 
             dataContext.Entry<Ticket>(ticket).State = EntityState.Modified;
         }

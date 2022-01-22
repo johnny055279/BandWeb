@@ -23,7 +23,10 @@ namespace webapi.Data
 
 			var admin = new AppUser
 			{
-				UserName = "Admin"
+				UserName = "Admin",
+				NickName = "Admin",
+				Email = "admin@gmail.com",
+				Gender = "male"
 			};
 
 			await userManager.CreateAsync(admin, "Pa$$w0rd");

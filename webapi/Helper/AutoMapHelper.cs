@@ -12,6 +12,14 @@ namespace webapi.Helper
             CreateMap<RegisterDto, AppUser>();
 
             CreateMap<TicketDto, Ticket>();
+
+            CreateMap<TicketUpdateDto, TicketDto>();
+
+            CreateMap<PostDto, Post>();
+
+            CreateMap<Post, PostDto>();
+
+            CreateMap<PostUpdateDto, Post>();
         }
     }
 }

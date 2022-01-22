@@ -10,9 +10,9 @@ using System.Text;
 
 namespace webapi.Extensions
 {
-	public static class IdentityServiceExtensions
+	public static class IdentityServiceExtension
 	{
-		public static IServiceCollection AddIdentityServices(this IServiceCollection services, IConfiguration configuration)
+		public static IServiceCollection AddIdentityServicesExtension(this IServiceCollection services, IConfiguration configuration)
         {
 			services.AddIdentityCore<AppUser>(option =>
 			{
@@ -31,7 +31,18 @@ namespace webapi.Extensions
 					ValidateIssuerSigningKey = true,
 
 					IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Key"])),
+					// API
+					ValidateIssuer = false,
+					// Angular
+					ValidateAudience = false,
+					// 驗證 Token 的有效期間
+					ValidateLifetime = true
 				};
+			});
+
+			services.AddAuthorization(option =>
+			{
+				option.AddPolicy("RequireAdminRole", policy => policy.RequireRole("Admin"));
 			});
 
 			return services;

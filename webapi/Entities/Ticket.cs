@@ -38,6 +38,8 @@ namespace webapi.Entities
         public bool SoldOut { get; set; } = false;
 
         public bool CompleteShow { get; set; } = false;
+
+        public bool Open { get; set; } = false;
     }
 }
 

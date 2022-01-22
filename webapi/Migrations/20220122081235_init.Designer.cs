@@ -12,8 +12,8 @@ using webapi.Data;
 namespace webapi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220120095133_addPost")]
-    partial class addPost
+    [Migration("20220122081235_init")]
+    partial class init
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -267,7 +267,13 @@ namespace webapi.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CommentTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -306,8 +312,11 @@ namespace webapi.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Open")
+                        .HasColumnType("bit");
+
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("RemainNumber")
                         .HasColumnType("int");
@@ -373,13 +382,13 @@ namespace webapi.Migrations
                     b.HasOne("webapi.Entities.AppRole", "Role")
                         .WithMany("UserRoles")
                         .HasForeignKey("RoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.HasOne("webapi.Entities.AppUser", "User")
                         .WithMany("UserRoles")
                         .HasForeignKey("UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Role");
@@ -392,13 +401,13 @@ namespace webapi.Migrations
                     b.HasOne("webapi.Entities.AppUser", "User")
                         .WithMany("PostComments")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.HasOne("webapi.Entities.Post", "Post")
                         .WithMany("PostComment")
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Post");
@@ -411,13 +420,13 @@ namespace webapi.Migrations
                     b.HasOne("webapi.Entities.AppUser", "User")
                         .WithMany("PostLikes")
                         .HasForeignKey("Id")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.HasOne("webapi.Entities.Post", "Post")
                         .WithMany("PostLike")
                         .HasForeignKey("PostId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.ClientCascade)
                         .IsRequired();
 
                     b.Navigation("Post");

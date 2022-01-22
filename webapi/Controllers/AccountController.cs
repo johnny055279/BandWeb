@@ -15,7 +15,7 @@ using AutoMapper;
 namespace webapi.Controllers
 {
  
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
         private readonly SignInManager<AppUser> signInManager;
 
@@ -38,7 +38,7 @@ namespace webapi.Controllers
 
 
         [HttpPost("register")]
-        public async Task<ActionResult<UserDto>> Register([FromBody] RegisterDto registerDto)
+        public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
             if (await CheckUserExist(registerDto.UserName, registerDto.Email)) return BadRequest("Email or username is taken!");
 
@@ -48,7 +48,7 @@ namespace webapi.Controllers
 
             if (!result.Succeeded) return BadRequest(result.Errors);
 
-            var roleResult = await userManager.AddToRoleAsync(user, "Admin");
+            var roleResult = await userManager.AddToRoleAsync(user, "Member");
 
             if(!roleResult.Succeeded) return BadRequest(result.Errors);
 
@@ -62,7 +62,7 @@ namespace webapi.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserDto>> Login([FromBody] LoginDto loginDto)
+        public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await userManager.FindByNameAsync(loginDto.Account);
 

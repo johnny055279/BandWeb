@@ -32,7 +32,8 @@ namespace webapi.Service
             {
                 new Claim(JwtRegisteredClaimNames.NameId, user.Id.ToString()),
                 new Claim(JwtRegisteredClaimNames.Gender, user.Gender),
-                new Claim(JwtRegisteredClaimNames.Email, user.Email)
+                new Claim(JwtRegisteredClaimNames.Email, user.Email),
+                new Claim(JwtRegisteredClaimNames.UniqueName, user.UserName)
             };
 
             var roles = await userManager.GetRolesAsync(user);

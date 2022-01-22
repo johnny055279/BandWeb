@@ -29,20 +29,29 @@ namespace webapi
         public void ConfigureServices(IServiceCollection services)
         {
 
-            services.AddControllers().AddJsonOptions(option => {
-                option.JsonSerializerOptions.PropertyNamingPolicy = null;
-            });
+            services.AddControllers();
 
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "webapi", Version = "v1" });
+
+                c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Type = SecuritySchemeType.ApiKey,
+                    Scheme = "Bearer",
+                    In = ParameterLocation.Header,
+                    Description = "Description"
+                });
             });
 
 
             // inject extensions
             services.AddAppServicesExtension(Configuration);
 
-            services.AddIdentityServices(Configuration);
+            services.AddIdentityServicesExtension(Configuration);
+
+            services.AddCors();
 
             
         }
@@ -60,6 +69,8 @@ namespace webapi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseAuthentication();
 
             app.UseAuthorization();
 

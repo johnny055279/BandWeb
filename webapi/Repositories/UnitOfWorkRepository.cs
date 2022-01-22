@@ -24,6 +24,8 @@ namespace webapi.Repositories
 
         public ITicketRepository TicketRepository => new TicketRepository(dataContext, mapper);
 
+        public IPostRepository PostRepository => new PostRepository(dataContext, mapper);
+
         public async Task<bool> Complete()
         {
             return await dataContext.SaveChangesAsync() > 0;

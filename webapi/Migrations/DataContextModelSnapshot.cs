@@ -265,7 +265,13 @@ namespace webapi.Migrations
                     b.Property<string>("Comment")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<DateTime>("CommentTime")
+                        .HasColumnType("datetime2");
+
                     b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -281,6 +287,9 @@ namespace webapi.Migrations
                         .HasColumnType("int");
 
                     b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -304,8 +313,11 @@ namespace webapi.Migrations
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Open")
+                        .HasColumnType("bit");
+
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("RemainNumber")
                         .HasColumnType("int");

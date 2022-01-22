@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace webapi.Controllers
 {
-    public class UserController : Controller
+    public class UserController : BaseController
     {
         
     }

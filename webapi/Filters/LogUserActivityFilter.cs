@@ -16,7 +16,7 @@ namespace webapi.Filters
 
             if (resultContext.Exception != null) return;
 
-            if (context.HttpContext.User.Identity.IsAuthenticated) return;
+            if (!context.HttpContext.User.Identity.IsAuthenticated) return;
 
             var userId = resultContext.HttpContext.User.GetUseId();
 

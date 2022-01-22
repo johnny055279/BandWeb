@@ -9,6 +9,8 @@ namespace webapi.Interfaces
 
 		ITicketRepository TicketRepository { get; }
 
+		IPostRepository PostRepository { get; }
+
 		Task<bool> Complete();
     }
 }

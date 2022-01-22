@@ -12,7 +12,7 @@ namespace webapi.Interfaces
 
 		Task DeleteTicket(int id);
 
-		Task UpdateTicket(TicketDto ticketDto);
+		Task UpdateTicket(int id, TicketUpdateDto ticketUpdateDto);
 
 		Task<IEnumerable<TicketDto>> GetTicketsAsync(bool soldOut, bool completeShow);
 

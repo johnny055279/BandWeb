@@ -3,17 +3,12 @@ using System.ComponentModel.DataAnnotations;
 
 namespace webapi.DTOs
 {
-	public class PostDto
+	public class PostUpdateDto
 	{
 		[Required]
 		public string Title { get; set; }
 		[Required]
 		public string Content { get; set; }
-
-		public int Likes { get; set; }
-
-		public DateTime LastEditTime { get; set; }
-
 	}
 }
 

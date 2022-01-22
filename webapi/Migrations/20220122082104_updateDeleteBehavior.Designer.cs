@@ -12,8 +12,8 @@ using webapi.Data;
 namespace webapi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    [Migration("20220120071556_addTicketEntity")]
-    partial class addTicketEntity
+    [Migration("20220122082104_updateDeleteBehavior")]
+    partial class updateDeleteBehavior
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -234,6 +234,70 @@ namespace webapi.Migrations
                     b.ToTable("AspNetUserRoles", (string)null);
                 });
 
+            modelBuilder.Entity("webapi.Entities.Post", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
+
+                    b.Property<string>("Content")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("LastEditTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("Likes")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Title")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Post");
+                });
+
+            modelBuilder.Entity("webapi.Entities.PostComment", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Comment")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CommentTime")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("UserId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("PostComment");
+                });
+
+            modelBuilder.Entity("webapi.Entities.PostLike", b =>
+                {
+                    b.Property<int>("Id")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PostId")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("PostId");
+
+                    b.ToTable("PostLikes");
+                });
+
             modelBuilder.Entity("webapi.Entities.Ticket", b =>
                 {
                     b.Property<int>("Id")
@@ -242,17 +306,26 @@ namespace webapi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
+                    b.Property<bool>("CompleteShow")
+                        .HasColumnType("bit");
+
                     b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<bool>("Open")
+                        .HasColumnType("bit");
+
                     b.Property<decimal>("Price")
-                        .HasColumnType("decimal(18,2)");
+                        .HasColumnType("decimal(18,4)");
 
                     b.Property<int>("RemainNumber")
                         .HasColumnType("int");
 
                     b.Property<DateTime>("ShowTime")
                         .HasColumnType("datetime2");
+
+                    b.Property<bool>("SoldOut")
+                        .HasColumnType("bit");
 
                     b.Property<string>("SubTitle")
                         .HasColumnType("nvarchar(max)");
@@ -323,6 +396,44 @@ namespace webapi.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("webapi.Entities.PostComment", b =>
+                {
+                    b.HasOne("webapi.Entities.AppUser", "User")
+                        .WithMany("PostComments")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("webapi.Entities.Post", "Post")
+                        .WithMany("PostComment")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+
+                    b.Navigation("User");
+                });
+
+            modelBuilder.Entity("webapi.Entities.PostLike", b =>
+                {
+                    b.HasOne("webapi.Entities.AppUser", "User")
+                        .WithMany("PostLikes")
+                        .HasForeignKey("Id")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("webapi.Entities.Post", "Post")
+                        .WithMany("PostLike")
+                        .HasForeignKey("PostId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Post");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("webapi.Entities.AppRole", b =>
                 {
                     b.Navigation("UserRoles");
@@ -330,7 +441,18 @@ namespace webapi.Migrations
 
             modelBuilder.Entity("webapi.Entities.AppUser", b =>
                 {
+                    b.Navigation("PostComments");
+
+                    b.Navigation("PostLikes");
+
                     b.Navigation("UserRoles");
+                });
+
+            modelBuilder.Entity("webapi.Entities.Post", b =>
+                {
+                    b.Navigation("PostComment");
+
+                    b.Navigation("PostLike");
                 });
 #pragma warning restore 612, 618
         }

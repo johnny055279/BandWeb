@@ -14,9 +14,8 @@ using webapi.Interfaces;
 
 namespace webapi.Controllers
 {
-    [Authorize(Policy = "RequireAdminRole")]
-    [Route("api/[controller]")]
-    public class TicketController : Controller
+    
+    public class TicketController : BaseController
     {
         private readonly IMapper mapper;
         private readonly IUnitOfWork unitOfWork;
@@ -27,7 +26,6 @@ namespace webapi.Controllers
             this.unitOfWork = unitOfWork;
         }
 
-        // GET: api/values
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TicketDto>>> GetTicketsAsync([FromQuery] bool soldOut, bool completeShow)
         {
@@ -38,7 +36,6 @@ namespace webapi.Controllers
             return Ok(tickets);
         }
 
-        // GET api/values/5
         [HttpGet("{id}")]
         public async Task<ActionResult<TicketDto>> GetTicketByIdAsync(int id)
         {
@@ -49,7 +46,7 @@ namespace webapi.Controllers
             return Ok(mapper.Map<TicketDto>(ticket));
         }
 
-        // POST api/values
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpPost]
         public async Task<ActionResult> CreateTicket(TicketDto ticketDto)
         {
@@ -62,18 +59,18 @@ namespace webapi.Controllers
             return Ok();
         }
 
-        // PUT api/values/5
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpPut("{id}")]
-        public async Task<ActionResult> UpdateTicket(TicketDto ticketDto)
+        public async Task<ActionResult> UpdateTicket(int id, [FromBody] TicketUpdateDto ticketUpdateDto)
         {
-            await unitOfWork.TicketRepository.UpdateTicket(ticketDto);
+            await unitOfWork.TicketRepository.UpdateTicket(id, ticketUpdateDto);
 
             if (!await unitOfWork.Complete()) return BadRequest("Fail to update ticket");
 
             return NoContent();
         }
 
-        // DELETE api/values/5
+        [Authorize(Policy = "RequireAdminRole")]
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteTicket(int id)
         {

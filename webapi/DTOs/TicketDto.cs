@@ -17,6 +17,12 @@ namespace webapi.DTOs
 		public string SubTitle { get; set; }
 		[Required]
 		public int RemainNumber { get; set; }
+
+		public bool SoldOut { get; set; }
+
+		public bool CompleteShow { get; set; }
+		[Required]
+		public bool Open { get; set; }
 	}
 }
 

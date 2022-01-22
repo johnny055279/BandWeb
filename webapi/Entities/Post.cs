@@ -8,10 +8,6 @@ namespace webapi.Entities
     [Table("Post")]
     public class Post
 	{
-		public Post()
-		{
-		}
-
         public Post(string title, string content)
         {
             Title = title;
@@ -25,7 +21,7 @@ namespace webapi.Entities
 
         public string Content { get; set; }
 
-		public int Likes { get; set; }
+        public int Likes { get; set; } = 0;
 
 		public DateTime LastEditTime { get; set; } = DateTime.Now;
 
