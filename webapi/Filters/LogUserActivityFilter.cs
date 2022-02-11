@@ -18,7 +18,7 @@ namespace webapi.Filters
 
             if (!context.HttpContext.User.Identity.IsAuthenticated) return;
 
-            var userId = resultContext.HttpContext.User.GetUseId();
+            var userId = resultContext.HttpContext.User.GetUserId();
 
             IUnitOfWork unitOfWork = resultContext.HttpContext.RequestServices.GetService<IUnitOfWork>();
 

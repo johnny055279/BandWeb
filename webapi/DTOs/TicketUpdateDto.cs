@@ -19,6 +19,8 @@ namespace webapi.DTOs
 		public int RemainNumber { get; set; }
 		[Required]
 		public bool Open { get; set; }
+		[Required]
+		public string ImageUrl { get; set; }
 	}
 }
 

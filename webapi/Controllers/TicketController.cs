@@ -8,9 +8,8 @@ using Microsoft.AspNetCore.Mvc;
 using webapi.Data;
 using webapi.DTOs;
 using webapi.Entities;
+using webapi.Extensions;
 using webapi.Interfaces;
-
-// For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
 namespace webapi.Controllers
 {
@@ -83,6 +82,17 @@ namespace webapi.Controllers
             await unitOfWork.TicketRepository.DeleteTicket(id);
 
             if (!await unitOfWork.Complete()) return BadRequest("can't delete ticket");
+
+            return Ok();
+        }
+
+        public async Task<ActionResult> PurchaseTicket(int id, [FromQuery] int number, [FromServices] IRedisService redisService)
+        {
+            var user = await unitOfWork.UserRepository.GetUserByIdAsync(User.GetUserId());
+
+            if (!await unitOfWork.TicketRepository.PurchaseTicket(id, number, user, redisService)) return BadRequest("Ticket sold out");
+
+            if (!await unitOfWork.Complete()) return BadRequest("something went wrong");
 
             return Ok();
         }

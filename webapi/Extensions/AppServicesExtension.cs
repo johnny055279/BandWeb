@@ -7,14 +7,7 @@ using webapi.Helper;
 using webapi.Interfaces;
 using webapi.Service;
 using System.Text.Json;
-using webapi.Filters;
-using Quartz.Spi;
-using Quartz;
-using webapi.Services;
-using Quartz.Impl;
-using webapi.Models;
 using webapi.Repositories;
-using webapi.ScheduleJobs;
 
 namespace webapi.Extensions
 {
@@ -31,7 +24,7 @@ namespace webapi.Extensions
 
             services.AddScoped<ITicketRepository, TicketRepository>();
 
-            services.AddScoped<LogUserActivityFilter>();
+            services.AddScoped<IRedisService, RedisService>();
 
             services.AddAutoMapper(typeof(AutoMapHelper).Assembly);
 
@@ -39,23 +32,6 @@ namespace webapi.Extensions
             {
                 option.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
-
-            //向DI容器註冊Quartz服務
-            services.AddSingleton<IJobFactory, JobFactoryHelper>();
-            services.AddSingleton<ISchedulerFactory, StdSchedulerFactory>();
-
-            //向DI容器註冊Job
-            services.AddSingleton<CheckShowCompleteJob>();
-            services.AddSingleton<CheckServerMemoryUsageJob>();
-
-            //向DI容器註冊JobSchedule，這裡適合固定不變的作業
-            services.AddSingleton(new JobScheduleModel("CheckShowCompleted", typeof(CheckShowCompleteJob), "0 0 23 * * ?"));
-
-            services.AddSingleton(new JobScheduleModel("CheckServerMemoryUsage", typeof(CheckServerMemoryUsageJob), "0 */1 * * * ?"));
-
-            //向DI容器註冊Host服務
-            services.AddSingleton<QuartzHostedService>();
-            services.AddHostedService(provider => provider.GetService<QuartzHostedService>());
 
             return services;
         }

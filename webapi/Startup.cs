@@ -13,6 +13,7 @@ using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using webapi.Extensions;
 using System.Text;
+using Microsoft.AspNetCore.Http;
 
 namespace webapi
 {
@@ -51,6 +52,10 @@ namespace webapi
 
             services.AddIdentityServicesExtension(Configuration);
 
+            services.AddStackExchangeRedisExtensions(Configuration);
+
+            services.AddAppFilterExtensions();
+
             services.AddCors();
 
             
@@ -69,6 +74,8 @@ namespace webapi
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
 
             app.UseAuthentication();
 

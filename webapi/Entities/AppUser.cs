@@ -11,4 +11,5 @@ public class AppUser : IdentityUser<int>
     public ICollection<AppUserRole> UserRoles { get; set; }
     public ICollection<PostComment> PostComments { get; set; }
     public ICollection<PostLike> PostLikes { get; set; }
+    public ICollection<UserTicketOrder> TicketOrders { get; set; }
 }

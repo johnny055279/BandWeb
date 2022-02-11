@@ -17,6 +17,8 @@ namespace webapi.Interfaces
 		Task<IEnumerable<TicketDto>> GetTicketsAsync(bool soldOut, bool completeShow);
 
 		Task<Ticket> GetTicketByIdAsync(int id);
+
+		Task<bool> PurchaseTicket(int id, int number, AppUser appUser, IRedisService redisService);
 	}
 }
 

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
@@ -35,11 +36,17 @@ namespace webapi.Entities
 
         public DateTime UpdateTime { get; set; } = DateTime.Now;
 
+        public DateTime PurchaseDeadLine { get; set; }
+
         public bool SoldOut { get; set; } = false;
 
         public bool CompleteShow { get; set; } = false;
 
         public bool Open { get; set; } = false;
+
+        public string ImageUrl { get; set; }
+
+        public ICollection<UserTicketOrder> TicketOrders { get; set; }
     }
 }
 

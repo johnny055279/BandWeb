@@ -14,13 +14,9 @@ namespace webapi.Repositories
 	{
         private readonly DataContext dataContext;
 
-        private readonly IMapper mapper;
-
-        public PostRepository(DataContext dataContext, IMapper mapper)
+        public PostRepository(DataContext dataContext)
         {
             this.dataContext = dataContext;
-
-            this.mapper = mapper;
         }
 
         public void CreatePostAsync(Post post)

@@ -23,6 +23,9 @@ namespace webapi.DTOs
 		public bool CompleteShow { get; set; }
 		[Required]
 		public bool Open { get; set; }
+
+		[Required]
+		public string ImageUrl { get; set; }
 	}
 }
 

@@ -10,6 +10,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Quartz;
 using Quartz.Impl;
+using StackExchange.Redis;
 using webapi.Data;
 using webapi.Entities;
 using webapi.Helper;
@@ -43,6 +44,8 @@ namespace webapi
 
             await host.RunAsync();
         }
+
+        
 
         public static IHostBuilder CreateHostBuilder(string[] args) =>
             Host.CreateDefaultBuilder(args)

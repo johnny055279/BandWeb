@@ -9,6 +9,7 @@ using webapi.Entities;
 using webapi.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
+using webapi.Filters;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -35,7 +36,6 @@ namespace webapi.Controllers
 
             this.mapper = mapper;
         }
-
 
         [HttpPost("register")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)

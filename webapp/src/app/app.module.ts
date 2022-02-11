@@ -20,6 +20,8 @@ import { ShopMainComponent } from './shop/shop-main/shop-main.component';
 import { ShopCdComponent } from './shop/shop-music/shop-music.component';
 import { ShopApparelComponent } from './shop/shop-apparel/shop-apparel.component';
 import { ShopAccessoriesComponent } from './shop/shop-accessories/shop-accessories.component';
+import { ReactiveFormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -44,7 +46,9 @@ import { ShopAccessoriesComponent } from './shop/shop-accessories/shop-accessori
     BrowserAnimationsModule,
     AngularMaterialModule,
     LayoutModule,
-    FontAwesomeModule
+    FontAwesomeModule,
+    ReactiveFormsModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

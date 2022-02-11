@@ -11,7 +11,7 @@ namespace webapi.Extensions
 			return claimsPrincipal.FindFirst(ClaimTypes.Name).Value;
         }
 
-		public static int GetUseId(this ClaimsPrincipal claimsPrincipal)
+		public static int GetUserId(this ClaimsPrincipal claimsPrincipal)
         {
 			return int.Parse(claimsPrincipal.FindFirst(ClaimTypes.NameIdentifier).Value);
         }
