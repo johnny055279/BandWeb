@@ -1,31 +1,22 @@
 <div class="container">
-  <nav class="navbar">
-    <ul>
-        <li><a class="nav-item" mat-button (click)="scrollTo('home')">Home</a></li>
-        <li><a class="nav-item" mat-button (click)="scrollTo('about')">About</a></li>
-        <li><a class="nav-item" mat-button (click)="scrollTo('tour')">TOUR</a></li>
-        <li><a class="nav-item" mat-button (click)="scrollTo('shop')">SHOP</a></li>
-    </ul>
-  </nav>
-  <div id="parentDiv" appScrollSpy [spiedTags]="['section']" (sectionChange)="onSectionChange($event)">
-	<section id="home" class="section">
-		<h1>Welcome To My Site</h1>
-		<p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>
-	</section>
-	<section id="about" class="section">
-		<h1>About</h1>
-		<p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>
-	</section>
-	<section id="tour" class="section">
-		<h1>Tour</h1>
-		<p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>
-		<a mat-button routerLink="/tour">Get Tickets</a>
-	</section>
-	<section id="shop" class="section">
-		<h1>Contact</h1>
-		<p class="lead">Lorem ipsum dolor sit, amet consectetur adipisicing elit. Commodi, quis!</p>
-		<a mat-button routerLink="/shop">Go Shopping</a>
-	</section>
-  </div>
-  
+    <div class="row mt-3" *ngIf="newList$ | async as newList">
+        <div class="col-4" *ngFor="let item of newList">
+            <mat-card>
+                <mat-card-header>
+                    <div mat-card-avatar class="news-header-image"></div>
+                    <mat-card-title>{{item.title}}</mat-card-title>
+                    <mat-card-subtitle>{{item.subTitle}}</mat-card-subtitle>
+                </mat-card-header>
+                <img mat-card-image src="{{item.imgUrl}}" alt="">
+                <mat-card-content>
+                    <p class="text-justify">{{item.content}}</p>
+                </mat-card-content>
+                <mat-card-actions>
+                    <button mat-button>MORE</button>
+                    <span class="text-muted">{{item.postDate}}</span>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+
 </div>

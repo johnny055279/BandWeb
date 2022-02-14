@@ -51,7 +51,7 @@ namespace webapi.Controllers
         {
             var post = new Post(postDto.Title, postDto.Content);
 
-            unitOfWork.PostRepository.CreatePostAsync(post);
+            await unitOfWork.PostRepository.CreatePostAsync(post);
 
             if (!await unitOfWork.Complete()) return BadRequest("fail to create post");
 

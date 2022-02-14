@@ -20,6 +20,8 @@ namespace webapi.Data
 
         public DbSet<UserTicketOrder> UserTicketOrders { get; set; }
 
+        public DbSet<News> News { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -39,6 +41,8 @@ namespace webapi.Data
             modelBuilder.Entity<Post>().HasMany(n => n.PostLike).WithOne(n => n.Post).IsRequired().OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<Ticket>().HasMany(n => n.TicketOrders).WithOne(n => n.Ticket).IsRequired().OnDelete(DeleteBehavior.Cascade);
+
+            modelBuilder.Entity<News>();
             
         }
     }

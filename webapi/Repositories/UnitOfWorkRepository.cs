@@ -31,6 +31,8 @@ namespace webapi.Repositories
 
         public IPostRepository PostRepository => new PostRepository(dataContext);
 
+        public INewsRepository NewsRepository => new NewsRepository(dataContext, mapper);
+
         public async Task<bool> Complete()
         {
             return await dataContext.SaveChangesAsync() > 0;

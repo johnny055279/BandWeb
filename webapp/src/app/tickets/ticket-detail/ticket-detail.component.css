@@ -3,18 +3,17 @@
   padding: 0;
   font-family: "Sofia", sans-serif;
 }
-  
+
 h2 {
   color: #0a4870;
   font-weight: 500;
 }
-  
+
 ul {
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   padding: 0;
-  justify-content: space-around;
 }
 ul .booking-card {
   position: relative;
@@ -167,97 +166,22 @@ ul .booking-card:hover .informations-container .more-information {
     opacity: 1;
   }
 }
+.credits {
+  display: table;
+  background: #0a4870;
+  color: white;
+  line-height: 25px;
+  margin: 10px auto;
+  padding: 20px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  border-radius: 10px;
+  text-align: center;
+}
+.credits a {
+  color: #e3ebf1;
+}
+
 h1 {
   margin: 10px 20px;
-}
-
-.container{
-  height: 100vh;
-  background: url(../../assets/image/8654322.jpeg) 0 0 no-repeat;
-  background-size: cover;
-  
-}
-
-.static-banner {
-  margin-bottom: 10px;
-  border: 1px solid #fff;
-  text-transform: uppercase;
-  font-family: "Montserrat", sans-serif;
-  font-size: 0.8rem;
-  letter-spacing: 3px;
-  color: #fff;
-  text-decoration: none;
-  transition: all 0.2s ease;
-  z-index: 1;
-  left: 10px;
-  top: 10px;
-}
-
-.static-banner:hover{
-  color: black;
-  background-color: white;
-  -webkit-animation: shake-horizontal 3s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
-  animation: shake-horizontal 3s cubic-bezier(0.455, 0.030, 0.515, 0.955) infinite both;
-}
-
-.static-banner:hover fa-icon{
-  color: red;
-
-}
-
-@-webkit-keyframes shake-horizontal {
-  0%,
-  100% {
-      -webkit-transform: translateX(0);
-              transform: translateX(0);
-  }
-  10%,
-  30%,
-  50%,
-  70% {
-      -webkit-transform: translateX(-10px);
-              transform: translateX(-10px);
-  }
-  20%,
-  40%,
-  60% {
-      -webkit-transform: translateX(10px);
-              transform: translateX(10px);
-  }
-  80% {
-      -webkit-transform: translateX(8px);
-              transform: translateX(8px);
-  }
-  90% {
-      -webkit-transform: translateX(-8px);
-              transform: translateX(-8px);
-  }
-}
-@keyframes shake-horizontal {
-  0%,
-  100% {
-      -webkit-transform: translateX(0);
-              transform: translateX(0);
-  }
-  10%,
-  30%,
-  50%,
-  70% {
-      -webkit-transform: translateX(-10px);
-              transform: translateX(-10px);
-  }
-  20%,
-  40%,
-  60% {
-      -webkit-transform: translateX(10px);
-              transform: translateX(10px);
-  }
-  80% {
-      -webkit-transform: translateX(8px);
-              transform: translateX(8px);
-  }
-  90% {
-      -webkit-transform: translateX(-8px);
-              transform: translateX(-8px);
-  }
 }

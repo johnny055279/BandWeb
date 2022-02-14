@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using webapi.Data;
 
@@ -11,9 +12,10 @@ using webapi.Data;
 namespace webapi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220211095404_addNews")]
+    partial class addNews
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -245,9 +247,6 @@ namespace webapi.Migrations
 
                     b.Property<string>("ImgUrl")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<DateTime>("PostDate")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("SubTitle")
                         .HasColumnType("nvarchar(max)");

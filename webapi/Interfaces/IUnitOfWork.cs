@@ -11,6 +11,8 @@ namespace webapi.Interfaces
 
 		IPostRepository PostRepository { get; }
 
+		INewsRepository NewsRepository { get; }
+
 		Task<bool> Complete();
     }
 }

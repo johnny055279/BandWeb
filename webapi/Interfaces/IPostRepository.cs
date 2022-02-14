@@ -16,7 +16,7 @@ namespace webapi.Interfaces
 
 		Task DeletePost(int id);
 
-		void CreatePostAsync(Post post);
+		Task CreatePostAsync(Post post);
 
 		void LeaveCommentAsync(PostComment postComment);
 

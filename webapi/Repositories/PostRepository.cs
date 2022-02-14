@@ -19,9 +19,9 @@ namespace webapi.Repositories
             this.dataContext = dataContext;
         }
 
-        public void CreatePostAsync(Post post)
+        public async Task CreatePostAsync(Post post)
         {
-            dataContext.Add(post);
+           await dataContext.AddAsync(post);
         }
 
         public async Task DeleteComment(int id)
