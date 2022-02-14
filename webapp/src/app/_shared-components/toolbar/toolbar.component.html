@@ -1,6 +1,15 @@
 <mat-toolbar id="toolbar">
-    <a mat-raised-button color="primary">HOME</a>
-    <a mat-button>ABOUT</a>
-    <a mat-button>TOUR</a>
-    <a mat-button>SHOP</a>
+    <a mat-raised-button color="primary" class="me-3" routerLink="/">HOME</a>
+    <a mat-button class="me-3">ABOUT</a>
+    <a mat-button class="me-3">TOUR</a>
+    <a mat-button class="me-3">SHOP</a>
+    <a mat-mini-fab color="warn" class="me-3">
+        <mat-icon>manage_accounts</mat-icon>
+    </a>
+    <a mat-mini-fab color="warn" class="me-3" routerLink="/regist">
+        <mat-icon>app_registration</mat-icon>
+    </a>
+    <a mat-mini-fab color="warn" class="me-3">
+        <mat-icon>logout</mat-icon>
+    </a>
 </mat-toolbar>

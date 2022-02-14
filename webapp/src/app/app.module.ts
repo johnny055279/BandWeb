@@ -23,6 +23,8 @@ import { TicketListComponent } from './tickets/ticket-list/ticket-list.component
 import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
 import { TicketPurchaseComponent } from './tickets/ticket-purchase/ticket-purchase.component';
 import { CommonModule } from '@angular/common';
+import { NewsComponent } from './news/news.component';
+import { RegistComponent } from './regist/regist.component';
 
 @NgModule({
     declarations: [
@@ -39,7 +41,9 @@ import { CommonModule } from '@angular/common';
         ShopAccessoriesComponent,
         TicketListComponent,
         TicketDetailComponent,
-        TicketPurchaseComponent
+        TicketPurchaseComponent,
+        NewsComponent,
+        RegistComponent
     ],
     imports: [
         BrowserModule,

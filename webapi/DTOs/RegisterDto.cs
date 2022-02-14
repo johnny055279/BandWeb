@@ -12,12 +12,12 @@ namespace webapi.DTOs
 		[StringLength(20)]
 		public string NickName { get; set; }
 		[Required]
-		[StringLength(10, MinimumLength = 8)]
+		[StringLength(20, MinimumLength = 8)]
 		public string Password { get; set; }
 		[Required]
 		public string Gender { get; set; }
 		[Required]
-		[StringLength(30)]
+		[EmailAddress]
 		public string Email { get; set; }
     }
 }

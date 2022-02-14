@@ -10,31 +10,40 @@ import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatListModule } from '@angular/material/list';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { MatCardModule } from '@angular/material/card';
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatSelectModule } from '@angular/material/select';
 
 @NgModule({
-  declarations: [],
-  imports: [
-    CommonModule,
-    MatFormFieldModule,
-    MatCommonModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule
-  ],
-  exports: [
-    MatCommonModule,
-    MatFormFieldModule,
-    MatToolbarModule,
-    MatIconModule,
-    MatButtonModule,
-    MatSidenavModule,
-    MatListModule,
-    MatGridListModule,
-    MatCardModule
-  ]
+    declarations: [],
+    imports: [
+        CommonModule,
+        MatFormFieldModule,
+        MatCommonModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatListModule,
+        MatGridListModule,
+        MatCardModule,
+        MatProgressSpinnerModule,
+        MatStepperModule,
+        MatSelectModule
+    ],
+    exports: [
+        MatCommonModule,
+        MatFormFieldModule,
+        MatToolbarModule,
+        MatIconModule,
+        MatButtonModule,
+        MatSidenavModule,
+        MatListModule,
+        MatGridListModule,
+        MatCardModule,
+        MatProgressSpinnerModule,
+        MatStepperModule,
+        MatSelectModule
+    ]
 })
 export class AngularMaterialModule { }
