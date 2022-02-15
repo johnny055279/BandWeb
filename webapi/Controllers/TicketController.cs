@@ -12,8 +12,7 @@ using webapi.Extensions;
 using webapi.Interfaces;
 
 namespace webapi.Controllers
-{
-    
+{  
     public class TicketController : BaseController
     {
         private readonly IMapper mapper;

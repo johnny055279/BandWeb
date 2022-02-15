@@ -15,7 +15,6 @@ using webapi.Filters;
 
 namespace webapi.Controllers
 {
- 
     public class AccountController : BaseController
     {
         private readonly SignInManager<AppUser> signInManager;

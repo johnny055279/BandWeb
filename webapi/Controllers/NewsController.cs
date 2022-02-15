@@ -12,7 +12,6 @@ using webapi.Interfaces;
 
 namespace webapi.Controllers
 {
-    [Route("api/[controller]")]
     public class NewsController : Controller
     {
         private readonly IMapper mapper;

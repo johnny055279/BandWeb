@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
+import { delay } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -17,7 +18,6 @@ export class BusyService {
 
     onResponse() {
         this.requestCoiunt--;
-
         if (this.requestCoiunt <= 0) {
             this.requestCoiunt = 0;
             this.loadingSource.next(false);

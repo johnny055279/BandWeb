@@ -14,7 +14,6 @@ using webapi.Interfaces;
 
 namespace webapi.Controllers
 {
-    [Route("api/[controller]")]
     [Authorize]
     public class PostController : BaseController
     {

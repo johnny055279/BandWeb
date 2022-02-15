@@ -18,13 +18,14 @@ import { ShopCdComponent } from './shop/shop-music/shop-music.component';
 import { ShopApparelComponent } from './shop/shop-apparel/shop-apparel.component';
 import { ShopAccessoriesComponent } from './shop/shop-accessories/shop-accessories.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
 import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
 import { TicketPurchaseComponent } from './tickets/ticket-purchase/ticket-purchase.component';
-import { CommonModule } from '@angular/common';
 import { NewsComponent } from './news/news.component';
 import { RegistComponent } from './regist/regist.component';
+import { SnackBarComponent } from './_shared-components/snack-bar/snack-bar.component';
+import { RequestInterceptor } from './_interceptors/request.interceptor';
 
 @NgModule({
     declarations: [
@@ -43,7 +44,8 @@ import { RegistComponent } from './regist/regist.component';
         TicketDetailComponent,
         TicketPurchaseComponent,
         NewsComponent,
-        RegistComponent
+        RegistComponent,
+        SnackBarComponent
     ],
     imports: [
         BrowserModule,
@@ -54,9 +56,8 @@ import { RegistComponent } from './regist/regist.component';
         FontAwesomeModule,
         ReactiveFormsModule,
         HttpClientModule,
-
     ],
-    providers: [],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

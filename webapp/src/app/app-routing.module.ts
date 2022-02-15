@@ -8,7 +8,7 @@ import { ShopMainComponent } from './shop/shop-main/shop-main.component';
 import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
 import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
 import { Page404Component } from './_errors/page404/page404.component';
-import { NewsDetailResolver } from './_resolvers/news-detail.resolver';
+import { NewsDetailResolver } from './_resolver/news-detail.resolver';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
