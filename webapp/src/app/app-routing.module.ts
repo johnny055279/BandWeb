@@ -1,7 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
 import { NewsComponent } from './news/news.component';
 import { RegistComponent } from './regist/regist.component';
 import { ShopMainComponent } from './shop/shop-main/shop-main.component';
@@ -15,7 +14,6 @@ const routes: Routes = [
     {
         path: '',
         children: [
-            { path: 'login', component: LoginComponent },
             { path: 'regist', component: RegistComponent },
             { path: 'news/:id', component: NewsComponent, resolve: { news: NewsDetailResolver } },
             { path: 'shop', component: ShopMainComponent },

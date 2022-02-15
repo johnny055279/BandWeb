@@ -3,13 +3,19 @@
     <a mat-button class="me-3">ABOUT</a>
     <a mat-button class="me-3">TOUR</a>
     <a mat-button class="me-3">SHOP</a>
-    <a mat-mini-fab color="warn" class="me-3" matTooltip="Setting">
-        <mat-icon>manage_accounts</mat-icon>
-    </a>
-    <a mat-mini-fab color="warn" class="me-3" routerLink="/regist" matTooltip="Regist">
+    <a mat-mini-fab color="warn" class="me-3" routerLink="/regist" matTooltip="Sign up"
+        *ngIf="!(accountService.account$ | async)">
         <mat-icon>app_registration</mat-icon>
     </a>
-    <a mat-mini-fab color="warn" class="me-3" matTooltip="Logout">
+    <a mat-mini-fab color="warn" class="me-3" matTooltip="Sign in" *ngIf="!(accountService.account$ | async)"
+        (click)="openDialog()">
+        <mat-icon>login</mat-icon>
+    </a>
+    <a mat-mini-fab color="warn" class="me-3" matTooltip="Setting" *ngIf="accountService.account$ | async">
+        <mat-icon>manage_accounts</mat-icon>
+    </a>
+    <a mat-mini-fab color="warn" class="me-3" matTooltip="Logout" *ngIf="accountService.account$ | async"
+        (click)="logout()">
         <mat-icon>logout</mat-icon>
     </a>
 </mat-toolbar>

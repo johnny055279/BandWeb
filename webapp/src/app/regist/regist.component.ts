@@ -1,11 +1,10 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, NgForm, Validators } from '@angular/forms';
-import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { Router } from '@angular/router';
 import { environment } from 'src/environments/environment';
+import { AccountService } from '../_services/account.service';
 import { BusyService } from '../_services/busy.service';
-import { SnackBarComponent } from '../_shared-components/snack-bar/snack-bar.component';
+import { SnackbarService } from '../_services/snackbar.service';
 
 @Component({
     selector: 'app-regist',
@@ -14,7 +13,7 @@ import { SnackBarComponent } from '../_shared-components/snack-bar/snack-bar.com
 })
 export class RegistComponent implements OnInit {
     baseUrl = environment.baseUrl;
-    snackbarConfig = <MatSnackBarConfig>environment.snackBarConfig;
+    hide = true;
     firstFormGroup = new FormGroup({
         userName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
         nickName: new FormControl('', [Validators.required, Validators.maxLength(20)]),
@@ -26,7 +25,11 @@ export class RegistComponent implements OnInit {
         email: new FormControl('', [Validators.required, Validators.email])
     });
 
-    constructor(private http: HttpClient, private snackBar: MatSnackBar, public busyService: BusyService, private router: Router) { }
+    constructor(
+        public busyService: BusyService,
+        private router: Router,
+        private accountService: AccountService,
+        private snackbarService: SnackbarService) { }
 
     ngOnInit(): void {
     }
@@ -35,8 +38,8 @@ export class RegistComponent implements OnInit {
         this.firstFormGroup.addControl('gender', this.secondFormGroup.controls['gender']);
         this.firstFormGroup.addControl('email', this.secondFormGroup.controls['email']);
 
-        this.http.post(this.baseUrl + 'account/register', this.firstFormGroup.value).subscribe(() => {
-            this.snackBar.openFromComponent(SnackBarComponent, this.snackbarConfig);
+        this.accountService.regist(this.firstFormGroup.value).subscribe(() => {
+            this.snackbarService.onSuccess();
             this.router.navigateByUrl('/');
         }, error => console.log(error));
     }

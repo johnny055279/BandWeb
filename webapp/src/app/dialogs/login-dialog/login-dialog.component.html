@@ -1,0 +1,19 @@
+<div mat-dialog-content>
+    <p>Sign up</p>
+    <mat-form-field appearance="fill">
+        <mat-label>Enter your account</mat-label>
+        <input matInput placeholder="Account" [(ngModel)]="data.account">
+    </mat-form-field>
+    <mat-form-field appearance="fill" class="me-3">
+        <mat-label>Enter your password</mat-label>
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" [(ngModel)]="data.password">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+            [attr.aria-pressed]="hide">
+            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+    </mat-form-field>
+</div>
+<div mat-dialog-actions>
+    <button mat-button (click)="onNoClick()">CANCEL</button>
+    <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>LOGIN</button>
+</div>

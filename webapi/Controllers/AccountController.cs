@@ -36,7 +36,7 @@ namespace webapi.Controllers
             this.mapper = mapper;
         }
 
-        [HttpPost("register")]
+        [HttpPost("regist")]
         public async Task<ActionResult<UserDto>> Register(RegisterDto registerDto)
         {
             if (await CheckUserExist(registerDto.UserName, registerDto.Email)) return BadRequest("Email or username is taken!");

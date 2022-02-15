@@ -12,7 +12,7 @@ using webapi.Interfaces;
 
 namespace webapi.Controllers
 {
-    public class NewsController : Controller
+    public class NewsController : BaseController
     {
         private readonly IMapper mapper;
 

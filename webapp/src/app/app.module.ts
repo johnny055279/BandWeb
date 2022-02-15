@@ -6,7 +6,6 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
 import { AngularMaterialModule } from './_shared-modules/angular-material.module';
 import { Page404Component } from './_errors/page404/page404.component';
 import { Page500Component } from './_errors/page500/page500.component';
@@ -17,7 +16,7 @@ import { ShopMainComponent } from './shop/shop-main/shop-main.component';
 import { ShopCdComponent } from './shop/shop-music/shop-music.component';
 import { ShopApparelComponent } from './shop/shop-apparel/shop-apparel.component';
 import { ShopAccessoriesComponent } from './shop/shop-accessories/shop-accessories.component';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
 import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
@@ -26,12 +25,12 @@ import { NewsComponent } from './news/news.component';
 import { RegistComponent } from './regist/regist.component';
 import { SnackBarComponent } from './_shared-components/snack-bar/snack-bar.component';
 import { RequestInterceptor } from './_interceptors/request.interceptor';
+import { LoginDialogComponent } from './dialogs/login-dialog/login-dialog.component';
 
 @NgModule({
     declarations: [
         AppComponent,
         HomeComponent,
-        LoginComponent,
         Page404Component,
         Page500Component,
         ToolbarComponent,
@@ -45,13 +44,15 @@ import { RequestInterceptor } from './_interceptors/request.interceptor';
         TicketPurchaseComponent,
         NewsComponent,
         RegistComponent,
-        SnackBarComponent
+        SnackBarComponent,
+        LoginDialogComponent
     ],
     imports: [
         BrowserModule,
         AppRoutingModule,
         BrowserAnimationsModule,
         AngularMaterialModule,
+        FormsModule,
         LayoutModule,
         FontAwesomeModule,
         ReactiveFormsModule,

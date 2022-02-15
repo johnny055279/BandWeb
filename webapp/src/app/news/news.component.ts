@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { News } from '../_models/home/news';
+import { News } from '../_models/news';
 
 @Component({
     selector: 'app-news',
@@ -8,7 +8,6 @@ import { News } from '../_models/home/news';
     styleUrls: ['./news.component.css']
 })
 export class NewsComponent implements OnInit {
-
     news!: News;
     constructor(private route: ActivatedRoute) { }
 
