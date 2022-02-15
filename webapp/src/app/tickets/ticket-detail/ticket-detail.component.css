@@ -1,187 +1,166 @@
 * {
-  margin: 0;
-  padding: 0;
-  font-family: "Sofia", sans-serif;
+  transition: 300ms;
 }
 
-h2 {
-  color: #0a4870;
-  font-weight: 500;
+.intro {
+  text-align: center;
 }
 
 ul {
+  list-style-type: none;
+}
+
+h1, h2, h3, h4, h5, p {
+  font-weight: 400;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+a:hover {
+  color: #6ABCEA;
+}
+
+.container {
   display: flex;
   flex-wrap: wrap;
-  list-style: none;
-  padding: 0;
-}
-ul .booking-card {
-  position: relative;
-  width: 300px;
-  display: flex;
-  flex: 0 0 300px;
-  flex-direction: column;
-  margin: 20px;
-  margin-bottom: 30px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
-  overflow: hidden;
-  background-position: center center;
-  background-size: cover;
-  text-align: center;
-  color: #0a4870;
-  transition: 0.3s;
-}
-ul .booking-card::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background: rgba(10, 72, 112, 0);
-  transition: 0.3s;
-}
-ul .booking-card .book-container {
-  height: 200px;
-}
-ul .booking-card .book-container .content {
-  position: relative;
-  opacity: 0;
-  display: flex;
-  align-items: center;
+  max-width: 100%;
+  margin-top: 10vh;
+  margin-left: auto;
+  margin-right: auto;
   justify-content: center;
-  height: 100%;
+}
+
+.movie-card {
+  background: #ffffff;
+  box-shadow: 0px 6px 18px rgba(0, 0, 0, 0.1);
   width: 100%;
-  transform: translateY(-200px);
-  transition: 0.3s;
-}
-ul .booking-card .book-container .content .btn {
-  border: 3px solid white;
-  padding: 10px 15px;
-  background: none;
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 1.3em;
-  color: white;
-  cursor: pointer;
-  transition: 0.3s;
-}
-ul .booking-card .book-container .content .btn:hover {
-  background: white;
-  border: 0px solid white;
-  color: #0a4870;
-}
-ul .booking-card .informations-container {
-  flex: 1 0 auto;
-  padding: 20px;
-  background: #f0f0f0;
-  transform: translateY(206px);
-  transition: 0.3s;
-}
-ul .booking-card .informations-container .title {
-  position: relative;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
-  font-weight: bold;
-  font-size: 1.2em;
-}
-ul .booking-card .informations-container .title::after {
-  content: "";
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  width: 50px;
-  margin: auto;
-  background: #0a4870;
-}
-ul .booking-card .informations-container .price {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-top: 10px;
-}
-ul .booking-card .informations-container .price .icon {
-  margin-right: 10px;
-}
-ul .booking-card .informations-container .more-information {
-  opacity: 0;
-  transition: 0.3s;
-}
-ul .booking-card .informations-container .more-information .info-and-date-container {
-  display: flex;
-}
-ul .booking-card .informations-container .more-information .info-and-date-container .box {
-  flex: 1 0;
-  padding: 15px;
-  margin-top: 20px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
+  max-width: 315px;
+  margin: 2em;
   border-radius: 10px;
-  background: white;
-  font-weight: bold;
-  font-size: 0.9em;
+  display: inline-block;
 }
-ul .booking-card .informations-container .more-information .info-and-date-container .box .icon {
-  margin-bottom: 5px;
+
+.movie-header {
+  padding: 0;
+  margin: 0;
+  height: 367px;
+  width: 100%;
+  display: block;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
 }
-ul .booking-card .informations-container .more-information .info-and-date-container .box.info {
-  color: #ec992c;
-  margin-right: 10px;
+
+.manOfSteel {
+  background: url("http://henrycavill.org/images/Films/2013-Man-of-Steel/posters/3-Walmart-Superman-a.jpg");
+  background-size: cover;
 }
-ul .booking-card .informations-container .more-information .disclaimer {
-  margin-top: 20px;
-  font-size: 0.8em;
-  color: #7d7d7d;
+
+.babyDriver {
+  background: url("https://m.media-amazon.com/images/M/MV5BMjM3MjQ1MzkxNl5BMl5BanBnXkFtZTgwODk1ODgyMjI@._V1_SY1000_CR0,0,674,1000_AL_.jpg");
+  background-size: cover;
 }
-ul .booking-card:hover::before {
-  background: rgba(10, 72, 112, 0.6);
+
+.theDarkTower {
+  background: url("http://cdn.collider.com/wp-content/uploads/2017/03/the-dark-tower-poster.jpg");
+  background-size: cover;
+  background-position: 100% 100%;
 }
-ul .booking-card:hover .book-container .content {
-  opacity: 1;
-  transform: translateY(0px);
+
+.bladeRunner2049 {
+  background: url("http://cdn.collider.com/wp-content/uploads/2017/05/blade-runner-2049-poster-ryan-gosling.jpeg");
+  background-size: cover;
+  background-position: 100% 80%;
 }
-ul .booking-card:hover .informations-container {
-  transform: translateY(0px);
+
+.header-icon-container {
+  position: relative;
 }
-ul .booking-card:hover .informations-container .more-information {
+
+.header-icon {
+  width: 100%;
+  height: 367px;
+  line-height: 367px;
+  text-align: center;
+  vertical-align: middle;
+  margin: 0 auto;
+  color: #ffffff;
+  font-size: 54px;
+  text-shadow: 0px 0px 20px #6abcea, 0px 5px 20px #6ABCEA;
+  opacity: 0.85;
+}
+
+.header-icon:hover {
+  background: rgba(0, 0, 0, 0.15);
+  font-size: 74px;
+  text-shadow: 0px 0px 20px #6abcea, 0px 5px 30px #6ABCEA;
+  border-top-left-radius: 10px;
+  border-top-right-radius: 10px;
   opacity: 1;
 }
 
-@media (max-width: 768px) {
-  ul .booking-card::before {
-    background: rgba(10, 72, 112, 0.6);
-  }
-  ul .booking-card .book-container .content {
-    opacity: 1;
-    transform: translateY(0px);
-  }
-  ul .booking-card .informations-container {
-    transform: translateY(0px);
-  }
-  ul .booking-card .informations-container .more-information {
-    opacity: 1;
-  }
+.movie-card:hover {
+  transform: scale(1.03);
+  box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.08);
 }
-.credits {
+
+.movie-content {
+  padding: 18px 18px 24px 18px;
+  margin: 0;
+}
+
+.movie-content-header, .movie-info {
   display: table;
-  background: #0a4870;
-  color: white;
-  line-height: 25px;
-  margin: 10px auto;
-  padding: 20px;
-  -webkit-border-radius: 10px;
-  -moz-border-radius: 10px;
-  border-radius: 10px;
+  width: 100%;
+}
+
+.movie-title {
+  font-size: 24px;
+  margin: 0;
+}
+
+.movie-info {
+  margin-top: 1em;
+}
+
+.info-section {
+  display: table-cell;
+  text-transform: uppercase;
   text-align: center;
 }
-.credits a {
-  color: #e3ebf1;
+
+.info-section:first-of-type {
+  text-align: left;
 }
 
-h1 {
-  margin: 10px 20px;
+.info-section:last-of-type {
+  text-align: right;
+}
+
+.info-section label {
+  display: block;
+  color: rgba(0, 0, 0, 0.5);
+  margin-bottom: 0.5em;
+  font-size: 9px;
+}
+
+.info-section span {
+  font-weight: 700;
+  font-size: 11px;
+}
+
+@media screen and (max-width: 500px) {
+  .movie-card {
+    width: 95%;
+    max-width: 95%;
+    margin: 1em;
+    display: block;
+  }
+
+  .container {
+    padding: 0;
+    margin: 0;
+  }
 }

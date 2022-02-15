@@ -1,7 +1,7 @@
 <mat-toolbar id="toolbar">
     <a mat-raised-button color="primary" class="me-3" routerLink="/">HOME</a>
     <a mat-button class="me-3">ABOUT</a>
-    <a mat-button class="me-3">TOUR</a>
+    <a mat-button class="me-3" routerLink="/tickets">TOUR</a>
     <a mat-button class="me-3">SHOP</a>
     <span class="spacer"></span>
     <a mat-mini-fab color="warn" class="me-3" matTooltip="Cart" *ngIf="accountService.account$ | async">

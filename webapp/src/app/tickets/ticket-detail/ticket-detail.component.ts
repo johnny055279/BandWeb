@@ -1,15 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { Ticket } from 'src/app/_models/ticket';
 
 @Component({
-  selector: 'app-ticket-detail',
-  templateUrl: './ticket-detail.component.html',
-  styleUrls: ['./ticket-detail.component.css']
+    selector: 'app-ticket-detail',
+    templateUrl: './ticket-detail.component.html',
+    styleUrls: ['./ticket-detail.component.css']
 })
 export class TicketDetailComponent implements OnInit {
+    @Input() ticket?: Ticket;
+    constructor() { }
 
-  constructor() { }
-
-  ngOnInit(): void {
-  }
+    ngOnInit(): void {
+    }
 
 }

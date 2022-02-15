@@ -29,8 +29,6 @@ namespace webapi.Controllers
         {
             var tickets = await unitOfWork.TicketRepository.GetTicketsAsync(soldOut, completeShow);
 
-            if (tickets == null) return NotFound("can't find any tickets");
-
             return Ok(tickets);
         }
 
