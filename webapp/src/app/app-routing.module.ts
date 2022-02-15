@@ -5,6 +5,7 @@ import { NewsComponent } from './news/news.component';
 import { RegistComponent } from './regist/regist.component';
 import { ShopMainComponent } from './shop/shop-main/shop-main.component';
 import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
+import { TicketEditComponent } from './tickets/ticket-edit/ticket-edit.component';
 import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
 import { Page404Component } from './_errors/page404/page404.component';
 import { NewsDetailResolver } from './_resolver/news-detail.resolver';
@@ -18,7 +19,8 @@ const routes: Routes = [
             { path: 'news/:id', component: NewsComponent, resolve: { news: NewsDetailResolver } },
             { path: 'shop', component: ShopMainComponent },
             { path: 'tickets', component: TicketListComponent },
-            { path: 'tickets/:id', component: TicketDetailComponent }
+            { path: 'tickets/:id', component: TicketDetailComponent },
+            { path: 'ticket-edit', component: TicketEditComponent }
         ]
     },
     { path: '**', component: Page404Component }

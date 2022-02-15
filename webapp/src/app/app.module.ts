@@ -26,6 +26,9 @@ import { RegistComponent } from './regist/regist.component';
 import { SnackBarComponent } from './_shared-components/snack-bar/snack-bar.component';
 import { RequestInterceptor } from './_interceptors/request.interceptor';
 import { LoginDialogComponent } from './dialogs/login-dialog/login-dialog.component';
+import { TicketEditComponent } from './tickets/ticket-edit/ticket-edit.component';
+import { TicketCardComponent } from './tickets/ticket-card/ticket-card.component';
+import { TicketAddComponent } from './tickets/ticket-add/ticket-add.component';
 
 @NgModule({
     declarations: [
@@ -45,7 +48,10 @@ import { LoginDialogComponent } from './dialogs/login-dialog/login-dialog.compon
         NewsComponent,
         RegistComponent,
         SnackBarComponent,
-        LoginDialogComponent
+        LoginDialogComponent,
+        TicketEditComponent,
+        TicketCardComponent,
+        TicketAddComponent
     ],
     imports: [
         BrowserModule,

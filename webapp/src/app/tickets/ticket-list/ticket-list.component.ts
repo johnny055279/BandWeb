@@ -1,7 +1,6 @@
-import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { Ticket } from 'src/app/_models/ticket';
-import { environment } from 'src/environments/environment';
+import { TicketService } from 'src/app/_services/ticket.service';
 
 @Component({
     selector: 'app-ticket-list',
@@ -9,16 +8,15 @@ import { environment } from 'src/environments/environment';
     styleUrls: ['./ticket-list.component.css']
 })
 export class TicketListComponent implements OnInit {
-    baseUrl = environment.baseUrl;
     tickets?: Ticket[];
-    constructor(private http: HttpClient) { }
+    constructor(private ticketService: TicketService) { }
 
     ngOnInit(): void {
         this.getTickets();
     }
 
     getTickets() {
-        this.http.get<Ticket[]>(this.baseUrl + "ticket?soldOut=" + false + "&completeShow=" + "false").subscribe((tickets) => {
+        this.ticketService.getTickets(false, true).subscribe((tickets) => {
             this.tickets = tickets;
         });
     }
