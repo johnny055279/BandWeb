@@ -9,12 +9,14 @@ export class SnackbarService {
     snackbarConfig = <MatSnackBarConfig>environment.snackBarConfig;
     constructor(private snackBar: MatSnackBar) { }
 
-    onSuccess() {
-        this.snackBar.open('Success!', undefined, this.snackbarConfig);
+    onSuccess(message: string) {
+        this.snackbarConfig.panelClass = 'snackbarSuccess';
+        this.snackBar.open(message, undefined, this.snackbarConfig);
     }
 
-    onError() {
-
+    onError(message: string) {
+        this.snackbarConfig.panelClass = 'snackbarError';
+        this.snackBar.open(message, undefined, this.snackbarConfig);
     }
 
     onWarning() {

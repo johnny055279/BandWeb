@@ -18,6 +18,7 @@ import { MatTooltipModule } from '@angular/material/tooltip';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatDialogModule } from '@angular/material/dialog';
+import { MatBadgeModule } from '@angular/material/badge';
 @NgModule({
     declarations: [],
     imports: [
@@ -38,7 +39,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatTooltipModule,
         MatProgressBarModule,
         MatSnackBarModule,
-        MatDialogModule
+        MatDialogModule,
+        MatBadgeModule
     ],
     exports: [
         MatCommonModule,
@@ -57,7 +59,8 @@ import { MatDialogModule } from '@angular/material/dialog';
         MatTooltipModule,
         MatProgressBarModule,
         MatSnackBarModule,
-        MatDialogModule
+        MatDialogModule,
+        MatBadgeModule
     ]
 })
 export class AngularMaterialModule { }

@@ -3,6 +3,10 @@
     <a mat-button class="me-3">ABOUT</a>
     <a mat-button class="me-3">TOUR</a>
     <a mat-button class="me-3">SHOP</a>
+    <span class="spacer"></span>
+    <a mat-mini-fab color="warn" class="me-3" matTooltip="Cart" *ngIf="accountService.account$ | async">
+        <mat-icon matBadge="15" matBadgeColor="primary">shopping_cart</mat-icon>
+    </a>
     <a mat-mini-fab color="warn" class="me-3" routerLink="/regist" matTooltip="Sign up"
         *ngIf="!(accountService.account$ | async)">
         <mat-icon>app_registration</mat-icon>

@@ -39,7 +39,7 @@ export class RegistComponent implements OnInit {
         this.firstFormGroup.addControl('email', this.secondFormGroup.controls['email']);
 
         this.accountService.regist(this.firstFormGroup.value).subscribe(() => {
-            this.snackbarService.onSuccess();
+            this.snackbarService.onSuccess('Success!');
             this.router.navigateByUrl('/');
         }, error => console.log(error));
     }

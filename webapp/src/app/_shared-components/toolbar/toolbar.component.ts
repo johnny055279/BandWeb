@@ -18,7 +18,7 @@ export class ToolbarComponent implements OnInit {
 
     login(model: any) {
         this.accountService.login(model).subscribe(() => {
-            this.snackbarService.onSuccess();
+            this.snackbarService.onSuccess('Welcome back!');
         });
     }
 
@@ -33,7 +33,7 @@ export class ToolbarComponent implements OnInit {
 
         dialogRef.afterClosed().subscribe(response => {
             this.login(response);
-        })
+        });
     }
 
 
