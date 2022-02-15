@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
-import { NewsComponent } from './news/news.component';
+import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import { RegistComponent } from './regist/regist.component';
 import { ShopMainComponent } from './shop/shop-main/shop-main.component';
 import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
@@ -16,7 +16,7 @@ const routes: Routes = [
         path: '',
         children: [
             { path: 'regist', component: RegistComponent },
-            { path: 'news/:id', component: NewsComponent, resolve: { news: NewsDetailResolver } },
+            { path: 'news/:id', component: NewsDetailComponent, resolve: { news: NewsDetailResolver } },
             { path: 'shop', component: ShopMainComponent },
             { path: 'tickets', component: TicketListComponent },
             { path: 'tickets/:id', component: TicketDetailComponent },
