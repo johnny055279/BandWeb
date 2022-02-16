@@ -1,18 +1,20 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 import { merge, Observable, of as observableOf } from 'rxjs';
-import { catchError, map, startWith, switchMap } from 'rxjs/operators';
+import { startWith, switchMap, catchError, map } from 'rxjs/operators';
+import { TicketAddDialogComponent } from 'src/app/dialogs/ticket-add-dialog/ticket-add-dialog.component';
 import { Ticket } from 'src/app/_models/ticket';
 import { TicketService } from 'src/app/_services/ticket.service';
 
 @Component({
-    selector: 'app-ticket-edit',
-    templateUrl: './ticket-edit.component.html',
-    styleUrls: ['./ticket-edit.component.css']
+    selector: 'app-ticket-list-admin',
+    templateUrl: './ticket-list-admin.component.html',
+    styleUrls: ['./ticket-list-admin.component.css']
 })
-export class TicketEditComponent implements AfterViewInit {
-    displayedColumns: string[] = ['created', 'state', 'number', 'title'];
+export class TicketListAdminComponent implements AfterViewInit {
+    displayedColumns: string[] = ['number', 'showTime', 'title', 'location', 'price', 'purchaseDeadLine', 'operate'];
     data: Ticket[] = [];
 
     resultsLength = 0;
@@ -21,8 +23,8 @@ export class TicketEditComponent implements AfterViewInit {
 
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort) sort!: MatSort;
+    constructor(private ticketService: TicketService, public dialog: MatDialog) { }
 
-    constructor(private ticketService: TicketService) { }
     ngAfterViewInit(): void {
 
         // If the user changes the sort order, reset back to the first page.
@@ -43,7 +45,6 @@ export class TicketEditComponent implements AfterViewInit {
                     if (data === null) {
                         return [];
                     }
-
                     // Only refresh the result length if there is new data. In case of rate
                     // limit errors, we do not want to reset the paginator to zero, as that
                     // would prevent users from re-triggering requests.
@@ -51,7 +52,19 @@ export class TicketEditComponent implements AfterViewInit {
                     return data;
                 }),
             )
-            .subscribe(data => (this.data = data));
+            .subscribe(data => { (this.data = data); console.log(data) });
 
     }
+
+
+    openDialog() {
+        const dialogRef = this.dialog.open(TicketAddDialogComponent, {
+            width: '500px',
+        });
+
+        dialogRef.afterClosed().subscribe(response => {
+
+        });
+    }
+
 }

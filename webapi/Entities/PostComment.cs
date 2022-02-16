@@ -22,7 +22,8 @@ namespace webapi.Entities
         public int UserId { get; set; }
 
         public string Comment { get; set; }
-
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
         public DateTime CommentTime { get; set; } = DateTime.Now;
 
         public Post Post { get; set; }

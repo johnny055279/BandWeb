@@ -22,6 +22,8 @@ namespace webapi.Data
 
         public DbSet<News> News { get; set; }
 
+        public DbSet<City> City { get; set; }
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
@@ -43,6 +45,8 @@ namespace webapi.Data
             modelBuilder.Entity<Ticket>().HasMany(n => n.TicketOrders).WithOne(n => n.Ticket).IsRequired().OnDelete(DeleteBehavior.Cascade);
 
             modelBuilder.Entity<News>();
+
+            modelBuilder.Entity<Ticket>().HasOne(n => n.City).WithOne(n => n.Ticket).HasForeignKey<Ticket>(n => n.CityId);
             
         }
     }

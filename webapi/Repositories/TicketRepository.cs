@@ -52,12 +52,30 @@ namespace webapi.Repositories
 
         public async Task<Ticket> GetTicketByIdAsync(int id)
         {
-            return await dataContext.Tickets.FindAsync(id);
+            return await dataContext.Tickets.Include(n => n.City).OrderByDescending(n =>n.ShowTime).SingleOrDefaultAsync(n => n.Id == id);
         }
 
         public async Task<IEnumerable<TicketDto>> GetTicketsAsync(bool soldOut, bool completeShow)
         {
-            var tickets =  await dataContext.Tickets.Where(n => n.SoldOut == soldOut && n.CompleteShow == completeShow).ToListAsync();
+            var tickets =  await dataContext.Tickets.Include(n => n.City)
+                .Where(n => n.SoldOut == soldOut && n.CompleteShow == completeShow)
+                .Select( n => new TicketDto
+                {
+                    Id = n.Id,
+                    CityId = n.CityId,
+                    CityName = n.City.CityName,
+                    ShowTime = n.ShowTime,
+                    Price = n.Price,
+                    RemainNumber = n.RemainNumber,
+                    CompleteShow = n.CompleteShow,
+                    ImageUrl = n.ImageUrl,
+                    Open = n.Open,
+                    Title = n.Title,
+                    SubTitle = n.SubTitle,
+                    SoldOut = n.SoldOut,
+                    PurchaseDeadLine = n.PurchaseDeadLine
+                })
+                .ToListAsync();
 
             return mapper.Map<IEnumerable<TicketDto>>(tickets);
         }

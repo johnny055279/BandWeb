@@ -22,8 +22,9 @@ namespace webapi.Entities
         public string Content { get; set; }
 
         public int Likes { get; set; } = 0;
-
-		public DateTime LastEditTime { get; set; } = DateTime.Now;
+        [DataType(DataType.Date)]
+        [DisplayFormat(DataFormatString = "{0:yyyy-MM-dd}", ApplyFormatInEditMode = true)]
+        public DateTime LastEditTime { get; set; } = DateTime.Now;
 
         public ICollection<PostComment> PostComment { get; set; }
 

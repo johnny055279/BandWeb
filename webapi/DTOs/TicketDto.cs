@@ -8,7 +8,10 @@ namespace webapi.DTOs
 		[Required]
 		public DateTime ShowTime { get; set; }
 		[Required]
-		public string Location { get; set; }
+		public int CityId { get; set; }
+
+		public string CityName { get; set; }
+
 		[Required]
 		public decimal Price { get; set; }
 		[Required]
@@ -26,6 +29,8 @@ namespace webapi.DTOs
 
 		[Required]
 		public string ImageUrl { get; set; }
+
+		public DateTime PurchaseDeadLine { get; set; }
 	}
 }
 

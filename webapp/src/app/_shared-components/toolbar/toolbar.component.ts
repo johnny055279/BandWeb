@@ -27,9 +27,7 @@ export class ToolbarComponent implements OnInit {
     }
 
     openDialog() {
-        const dialogRef = this.dialog.open(LoginDialogComponent, {
-            width: '300px',
-        });
+        const dialogRef = this.dialog.open(LoginDialogComponent);
 
         dialogRef.afterClosed().subscribe(response => {
             this.login(response);

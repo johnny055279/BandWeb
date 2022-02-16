@@ -14,7 +14,7 @@ import { NewsService } from '../_services/news.service';
 export class NewsDetailResolver implements Resolve<News> {
 
     constructor(private newsService: NewsService) { }
-    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<News> | Promise<News> {
+    resolve(route: ActivatedRouteSnapshot, state: RouterStateSnapshot): Observable<News> {
         return this.newsService.getNewsById(route.paramMap.get('id') || '');
     }
 }

@@ -46,7 +46,7 @@ namespace webapi.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateTicket(TicketDto ticketDto)
         {
-            var ticket = new Ticket(ticketDto.ShowTime, ticketDto.Location, ticketDto.Price, ticketDto.Title, ticketDto.SubTitle, ticketDto.RemainNumber);
+            var ticket = new Ticket(ticketDto.ShowTime, ticketDto.CityId, ticketDto.Price, ticketDto.Title, ticketDto.SubTitle, ticketDto.RemainNumber);
 
             unitOfWork.TicketRepository.CreateTicket(ticket);
 

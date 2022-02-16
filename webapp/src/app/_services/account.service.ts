@@ -10,7 +10,7 @@ import { User } from '../_models/user';
 })
 export class AccountService {
     baseUrl = environment.baseUrl;
-    accountSource = new ReplaySubject<User>(1);
+    private accountSource = new ReplaySubject<User>(1);
     account$ = this.accountSource.asObservable();
     constructor(private http: HttpClient) { }
 
@@ -24,7 +24,7 @@ export class AccountService {
 
     logout() {
         this.accountSource.next(undefined);
-        sessionStorage.clear();
+        sessionStorage.removeItem('user');
     }
 
     regist(model: any) {

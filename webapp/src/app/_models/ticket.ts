@@ -1,7 +1,8 @@
 export interface Ticket {
-    id: number,
+    id: string,
     showTime: Date,
-    location: string,
+    cityId: string,
+    cityName: string,
     price: number,
     title: string,
     subTitle: string,
@@ -10,4 +11,5 @@ export interface Ticket {
     completeShow: boolean,
     open: boolean,
     imageUrl: string,
+    purchaseDeadLine: Date
 }

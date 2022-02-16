@@ -4,11 +4,14 @@ import { HomeComponent } from './home/home.component';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import { RegistComponent } from './regist/regist.component';
 import { ShopMainComponent } from './shop/shop-main/shop-main.component';
+import { TicketDetailAdminComponent } from './tickets/ticket-detail-admin/ticket-detail-admin.component';
 import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
-import { TicketEditComponent } from './tickets/ticket-edit/ticket-edit.component';
+import { TicketListAdminComponent } from './tickets/ticket-list-admin/ticket-list-admin.component';
 import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
 import { Page404Component } from './_errors/page404/page404.component';
+import { AdminGuard } from './_guard/admin.guard';
 import { NewsDetailResolver } from './_resolver/news-detail.resolver';
+import { TicketDetailResolver } from './_resolver/ticket-detail.resolver';
 
 const routes: Routes = [
     { path: '', component: HomeComponent },
@@ -19,8 +22,10 @@ const routes: Routes = [
             { path: 'news/:id', component: NewsDetailComponent, resolve: { news: NewsDetailResolver } },
             { path: 'shop', component: ShopMainComponent },
             { path: 'tickets', component: TicketListComponent },
-            { path: 'tickets/:id', component: TicketDetailComponent },
-            { path: 'ticket-edit', component: TicketEditComponent }
+            { path: 'ticket/:id', component: TicketDetailComponent, resolve: { news: TicketDetailResolver } },
+            { path: 'admin/tickets', component: TicketListAdminComponent },
+            { path: 'admin/tickets/:id', component: TicketDetailAdminComponent }
+
         ]
     },
     { path: '**', component: Page404Component }

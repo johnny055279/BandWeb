@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using webapi.Data;
 
@@ -11,9 +12,10 @@ using webapi.Data;
 namespace webapi.Migrations
 {
     [DbContext(typeof(DataContext))]
-    partial class DataContextModelSnapshot : ModelSnapshot
+    [Migration("20220216004627_addcity")]
+    partial class addcity
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -240,7 +242,7 @@ namespace webapi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<string>("CityName")
+                    b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -352,13 +354,13 @@ namespace webapi.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
 
-                    b.Property<int>("CityId")
-                        .HasColumnType("int");
-
                     b.Property<bool>("CompleteShow")
                         .HasColumnType("bit");
 
                     b.Property<string>("ImageUrl")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Open")
@@ -389,9 +391,6 @@ namespace webapi.Migrations
                         .HasColumnType("datetime2");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CityId")
-                        .IsUnique();
 
                     b.ToTable("Ticket");
                 });
@@ -513,17 +512,6 @@ namespace webapi.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("webapi.Entities.Ticket", b =>
-                {
-                    b.HasOne("webapi.Entities.City", "City")
-                        .WithOne("Ticket")
-                        .HasForeignKey("webapi.Entities.Ticket", "CityId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("City");
-                });
-
             modelBuilder.Entity("webapi.Entities.UserTicketOrder", b =>
                 {
                     b.HasOne("webapi.Entities.AppUser", "User")
@@ -557,11 +545,6 @@ namespace webapi.Migrations
                     b.Navigation("TicketOrders");
 
                     b.Navigation("UserRoles");
-                });
-
-            modelBuilder.Entity("webapi.Entities.City", b =>
-                {
-                    b.Navigation("Ticket");
                 });
 
             modelBuilder.Entity("webapi.Entities.Post", b =>

@@ -1,5 +1,5 @@
 <div class="movie-card">
-    <div class="movie-header babyDriver">
+    <div class="movie-header" style="background: url('{{ticket?.imageUrl}}'); background-size: cover;">
         <div class="header-icon-container">
             <a href="#">
                 <i class="material-icons header-icon">&#65284;</i>
@@ -9,25 +9,26 @@
     <div class="movie-content">
         <div class="movie-content-header">
             <a href="#">
-                <h3 class="movie-title">Man of Steel</h3>
+                <h3 class="movie-title">{{ticket?.title}}</h3>
             </a>
+            <h6>{{ticket?.subTitle}}</h6>
         </div>
         <div class="movie-info">
             <div class="info-section">
                 <label>Date &amp; Time</label>
-                <span>Sun 8 Sept - 10:00PM</span>
+                <span>{{ticket?.showTime | date: 'yyyy/MM/dd - hh:mm'}}</span>
             </div>
             <div class="info-section">
                 <label>Location</label>
-                <span>Taipei</span>
+                <span>{{ticket?.cityName}}</span>
             </div>
             <div class="info-section">
                 <label>Price</label>
-                <span>$100</span>
+                <span>${{ticket?.price}}</span>
             </div>
             <div class="info-section">
                 <label>Remain</label>
-                <span>3145</span>
+                <span>{{ticket?.remainNumber}}</span>
             </div>
         </div>
     </div>

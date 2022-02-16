@@ -19,18 +19,20 @@ import { ShopAccessoriesComponent } from './shop/shop-accessories/shop-accessori
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { TicketListComponent } from './tickets/ticket-list/ticket-list.component';
-import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
 import { TicketPurchaseComponent } from './tickets/ticket-purchase/ticket-purchase.component';
 import { RegistComponent } from './regist/regist.component';
 import { SnackBarComponent } from './_shared-components/snack-bar/snack-bar.component';
 import { RequestInterceptor } from './_interceptors/request.interceptor';
 import { LoginDialogComponent } from './dialogs/login-dialog/login-dialog.component';
-import { TicketEditComponent } from './tickets/ticket-edit/ticket-edit.component';
 import { TicketCardComponent } from './tickets/ticket-card/ticket-card.component';
-import { TicketAddComponent } from './tickets/ticket-add/ticket-add.component';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
 import { NewsListComponent } from './news/news-list/news-list.component';
 import { NewsEditComponent } from './news/news-edit/news-edit.component';
+import { TicketDetailComponent } from './tickets/ticket-detail/ticket-detail.component';
+import { TicketListAdminComponent } from './tickets/ticket-list-admin/ticket-list-admin.component';
+import { TicketDetailAdminComponent } from './tickets/ticket-detail-admin/ticket-detail-admin.component';
+import { CheckRoleDirective } from './_directives/check-role.directive';
+import { TicketAddDialogComponent } from './dialogs/ticket-add-dialog/ticket-add-dialog.component';
 
 @NgModule({
     declarations: [
@@ -45,17 +47,19 @@ import { NewsEditComponent } from './news/news-edit/news-edit.component';
         ShopApparelComponent,
         ShopAccessoriesComponent,
         TicketListComponent,
-        TicketDetailComponent,
         TicketPurchaseComponent,
         RegistComponent,
         SnackBarComponent,
         LoginDialogComponent,
-        TicketEditComponent,
         TicketCardComponent,
-        TicketAddComponent,
         NewsDetailComponent,
         NewsListComponent,
-        NewsEditComponent
+        NewsEditComponent,
+        TicketDetailComponent,
+        TicketListAdminComponent,
+        TicketDetailAdminComponent,
+        CheckRoleDirective,
+        TicketAddDialogComponent,
     ],
     imports: [
         BrowserModule,

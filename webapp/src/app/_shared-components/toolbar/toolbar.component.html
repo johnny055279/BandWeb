@@ -5,28 +5,30 @@
     <a mat-button class="me-3">SHOP</a>
     <a mat-button [matMenuTriggerFor]="menu">ADMIN</a>
     <mat-menu #menu="matMenu">
-        <a routerLink="/ticket-edit" mat-menu-item>TOUR</a>
+        <a routerLink="/admin/tickets" mat-menu-item>TOUR</a>
         <a mat-menu-item>NEWS</a>
         <a mat-menu-item>SHOP</a>
         <a mat-menu-item>DASHBOARD</a>
     </mat-menu>
     <span class="spacer"></span>
-    <a mat-mini-fab color="warn" class="me-3" matTooltip="Cart" *ngIf="accountService.account$ | async">
-        <mat-icon matBadge="15" matBadgeColor="primary">shopping_cart</mat-icon>
-    </a>
-    <a mat-mini-fab color="warn" class="me-3" routerLink="/regist" matTooltip="Sign up"
-        *ngIf="!(accountService.account$ | async)">
-        <mat-icon>app_registration</mat-icon>
-    </a>
-    <a mat-mini-fab color="warn" class="me-3" matTooltip="Sign in" *ngIf="!(accountService.account$ | async)"
-        (click)="openDialog()">
-        <mat-icon>login</mat-icon>
-    </a>
-    <a mat-mini-fab color="warn" class="me-3" matTooltip="Setting" *ngIf="accountService.account$ | async">
-        <mat-icon>manage_accounts</mat-icon>
-    </a>
-    <a mat-mini-fab color="warn" class="me-3" matTooltip="Logout" *ngIf="accountService.account$ | async"
-        (click)="logout()">
-        <mat-icon>logout</mat-icon>
-    </a>
+
+    <div *ngIf="!(accountService.account$ | async)">
+        <a mat-mini-fab color="warn" class="me-3" routerLink="/regist" matTooltip="Sign up">
+            <mat-icon>app_registration</mat-icon>
+        </a>
+        <a mat-mini-fab color="warn" class="me-3" matTooltip="Sign in" (click)="openDialog()">
+            <mat-icon>login</mat-icon>
+        </a>
+    </div>
+    <div *ngIf="accountService.account$ | async">
+        <a mat-mini-fab color="warn" class="me-3" matTooltip="Cart">
+            <mat-icon matBadge="15" matBadgeColor="primary">shopping_cart</mat-icon>
+        </a>
+        <a mat-mini-fab color="warn" class="me-3" matTooltip="Setting">
+            <mat-icon>manage_accounts</mat-icon>
+        </a>
+        <a mat-mini-fab color="warn" class="me-3" matTooltip="Logout" (click)="logout()">
+            <mat-icon>logout</mat-icon>
+        </a>
+    </div>
 </mat-toolbar>

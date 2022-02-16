@@ -58,23 +58,6 @@ a:hover {
   background-size: cover;
 }
 
-.babyDriver {
-  background: url("https://m.media-amazon.com/images/M/MV5BMjM3MjQ1MzkxNl5BMl5BanBnXkFtZTgwODk1ODgyMjI@._V1_SY1000_CR0,0,674,1000_AL_.jpg");
-  background-size: cover;
-}
-
-.theDarkTower {
-  background: url("http://cdn.collider.com/wp-content/uploads/2017/03/the-dark-tower-poster.jpg");
-  background-size: cover;
-  background-position: 100% 100%;
-}
-
-.bladeRunner2049 {
-  background: url("http://cdn.collider.com/wp-content/uploads/2017/05/blade-runner-2049-poster-ryan-gosling.jpeg");
-  background-size: cover;
-  background-position: 100% 80%;
-}
-
 .header-icon-container {
   position: relative;
 }
