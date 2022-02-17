@@ -8,6 +8,9 @@ using webapi.Interfaces;
 using webapi.Service;
 using System.Text.Json;
 using webapi.Repositories;
+using Microsoft.AspNetCore.Authentication.Google;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Http;
 
 namespace webapi.Extensions
 {

@@ -33,6 +33,8 @@ import { TicketListAdminComponent } from './tickets/ticket-list-admin/ticket-lis
 import { TicketDetailAdminComponent } from './tickets/ticket-detail-admin/ticket-detail-admin.component';
 import { CheckRoleDirective } from './_directives/check-role.directive';
 import { TicketAddDialogComponent } from './dialogs/ticket-add-dialog/ticket-add-dialog.component';
+import { GoogleLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
+import { SocialLoginModule } from 'angularx-social-login';
 
 @NgModule({
     declarations: [
@@ -71,8 +73,23 @@ import { TicketAddDialogComponent } from './dialogs/ticket-add-dialog/ticket-add
         FontAwesomeModule,
         ReactiveFormsModule,
         HttpClientModule,
+        SocialLoginModule
     ],
-    providers: [{ provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true }],
+    providers: [{ provide: HTTP_INTERCEPTORS, useClass: RequestInterceptor, multi: true },
+    {
+        provide: 'SocialAuthServiceConfig',
+        useValue: {
+            autoLogin: false,
+            providers: [
+                {
+                    id: GoogleLoginProvider.PROVIDER_ID,
+                    provider: new GoogleLoginProvider(
+                        '510583077153-j9qcbi5b8lfd1alqeitc8jcahao56qiq.apps.googleusercontent.com'
+                    )
+                },
+            ],
+        } as SocialAuthServiceConfig
+    }],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

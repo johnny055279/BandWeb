@@ -20,6 +20,8 @@
     <PackageReference Include="Quartz.AspNetCore" Version="3.3.3" />
     <PackageReference Include="StackExchange.Redis" Version="2.2.88" />
     <PackageReference Include="Microsoft.AspNetCore.SignalR" Version="1.1.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.Google" Version="6.0.2" />
+    <PackageReference Include="Google.Apis.Auth" Version="1.55.0" />
   </ItemGroup>
 
   <ItemGroup>
@@ -48,6 +50,8 @@
     <None Remove="StackExchange.Redis.Extensions.Core" />
     <None Remove="Microsoft.Extensions.Logging.Abstractions" />
     <None Remove="Microsoft.AspNetCore.SignalR" />
+    <None Remove="Microsoft.AspNetCore.Authentication.Google" />
+    <None Remove="Google.Apis.Auth" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Extensions\" />

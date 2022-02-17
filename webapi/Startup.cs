@@ -14,6 +14,7 @@ using Microsoft.OpenApi.Models;
 using webapi.Extensions;
 using System.Text;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Google;
 
 namespace webapi
 {
@@ -46,6 +47,7 @@ namespace webapi
                 });
             });
 
+            services.AddHttpClient();
 
             // inject extensions
             services.AddAppServicesExtension(Configuration);
@@ -57,8 +59,6 @@ namespace webapi
             services.AddAppFilterExtensions();
 
             services.AddCors();
-
-            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -80,6 +80,10 @@ namespace webapi
             app.UseAuthentication();
 
             app.UseAuthorization();
+
+            app.UseDefaultFiles();
+
+            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

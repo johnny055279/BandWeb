@@ -11,7 +11,9 @@ export class HomeComponent implements OnInit {
     constructor(public newsService: NewsService, public busyService: BusyService) { }
 
     ngOnInit(): void {
-        this.newsService.getNews().subscribe(response => { });
+        this.newsService.getNews().subscribe();
     }
+
+
 }
 

@@ -10,6 +10,11 @@ using webapi.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
 using webapi.Filters;
+using System.Net.Http;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Google;
+using Google.Apis.Auth;
+using Microsoft.Extensions.Configuration;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -25,7 +30,15 @@ namespace webapi.Controllers
 
         private readonly IMapper mapper;
 
-        public AccountController(SignInManager<AppUser> signInManager, UserManager<AppUser> userManager, ITokenServices tokenServices, IMapper mapper)
+        private readonly IHttpClientFactory clientFactory;
+
+        private readonly IConfiguration configuration;
+
+        public AccountController(SignInManager<AppUser> signInManager,
+        UserManager<AppUser> userManager,
+        ITokenServices tokenServices, IMapper mapper,
+        IHttpClientFactory clientFactory,
+        IConfiguration configuration)
         {
             this.signInManager = signInManager;
 
@@ -34,6 +47,10 @@ namespace webapi.Controllers
             this.tokenServices = tokenServices;
 
             this.mapper = mapper;
+
+            this.clientFactory = clientFactory;
+
+            this.configuration = configuration;
         }
 
         [HttpPost("regist")]
@@ -49,7 +66,7 @@ namespace webapi.Controllers
 
             var roleResult = await userManager.AddToRoleAsync(user, "Member");
 
-            if(!roleResult.Succeeded) return BadRequest(result.Errors);
+            if (!roleResult.Succeeded) return BadRequest(result.Errors);
 
             return new UserDto
             {
@@ -87,6 +104,53 @@ namespace webapi.Controllers
             var hasEmail = await userManager.Users.AnyAsync(n => n.Email == useremail);
 
             return hasUser || hasEmail;
+        }
+
+        [HttpPost("extra-signin")]
+        public async Task<ActionResult<UserDto>> SignInGoogle(ExternalAuthDto externalAuthDto)
+        {
+
+            var settings = new GoogleJsonWebSignature.ValidationSettings()
+            {
+                Audience = new List<string>() { configuration["Authentication:Google:ClientId"] } 
+            };
+            var payload = await GoogleJsonWebSignature.ValidateAsync(externalAuthDto.IdToken, settings);
+
+            if (payload == null) return BadRequest("Auth fail");
+
+            var info = new UserLoginInfo(externalAuthDto.Provider, payload.Subject, externalAuthDto.Provider);
+
+            var user = await userManager.FindByLoginAsync(info.LoginProvider, info.ProviderKey);
+
+            if(user == null)
+            {
+                user = await userManager.FindByEmailAsync(payload.Email);
+
+                if(user == null)
+                {
+                    user = new AppUser { Email = payload.Email, UserName = payload.Email, Gender = "", NickName = "" };
+
+                    await userManager.CreateAsync(user);
+                    //prepare and send an email for the email confirmation
+                    await userManager.AddToRoleAsync(user, "Member");
+
+                    await userManager.AddLoginAsync(user, info);
+                }
+                else
+                {
+                    await userManager.AddLoginAsync(user, info);
+                }
+            }
+
+            if (user == null) return BadRequest("Auth fail");
+
+            return new UserDto
+            {
+                UserName = user.UserName,
+                Gender = user.Gender == null ? "" : user.Gender,
+                NickName = user.NickName == null ? "" : user.NickName,
+                Token = await tokenServices.CreateToken(user)
+            };
         }
 
     }
