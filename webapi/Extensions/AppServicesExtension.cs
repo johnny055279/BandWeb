@@ -5,12 +5,8 @@ using Microsoft.Extensions.DependencyInjection;
 using webapi.Data;
 using webapi.Helper;
 using webapi.Interfaces;
-using webapi.Service;
-using System.Text.Json;
 using webapi.Repositories;
-using Microsoft.AspNetCore.Authentication.Google;
-using Microsoft.AspNetCore.Authentication.Cookies;
-using Microsoft.AspNetCore.Http;
+using webapi.Services;
 
 namespace webapi.Extensions
 {
@@ -28,6 +24,10 @@ namespace webapi.Extensions
             services.AddScoped<ITicketRepository, TicketRepository>();
 
             services.AddScoped<IRedisService, RedisService>();
+
+            services.AddScoped<DropdownService>();
+
+            services.AddScoped<DropdownResult>();
 
             services.AddAutoMapper(typeof(AutoMapHelper).Assembly);
 

@@ -30,9 +30,7 @@ export class TicketAddDialogComponent implements OnInit {
     constructor(public dialogRef: MatDialogRef<TicketListAdminComponent>, private systemService: SystemService) { }
 
     ngOnInit(): void {
-        this.systemService.getCities().subscribe(cities => {
-            this.cities = cities;
-        });
+        this.systemService.cities$.subscribe(cities => this.cities = cities);
     }
 
     onNoClick(): void {

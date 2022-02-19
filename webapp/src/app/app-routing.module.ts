@@ -24,7 +24,7 @@ const routes: Routes = [
             { path: 'tickets', component: TicketListComponent },
             { path: 'ticket/:id', component: TicketDetailComponent, resolve: { news: TicketDetailResolver } },
             { path: 'admin/tickets', component: TicketListAdminComponent },
-            { path: 'admin/tickets/:id', component: TicketDetailAdminComponent }
+            { path: 'admin/tickets/:id', component: TicketDetailAdminComponent, resolve: { ticket: TicketDetailResolver } }
 
         ]
     },

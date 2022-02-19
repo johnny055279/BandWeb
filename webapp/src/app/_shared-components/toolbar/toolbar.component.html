@@ -4,7 +4,6 @@
     <a mat-button class="me-3" routerLink="/tickets">TOUR</a>
     <a mat-button class="me-3">SHOP</a>
     <a mat-button [matMenuTriggerFor]="menu">ADMIN</a>
-    <a mat-button (click)="externalLogin()">Google</a>
     <mat-menu #menu="matMenu">
         <a routerLink="/admin/tickets" mat-menu-item>TOUR</a>
         <a mat-menu-item>NEWS</a>

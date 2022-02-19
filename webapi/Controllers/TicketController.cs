@@ -39,7 +39,7 @@ namespace webapi.Controllers
 
             if (ticket == null) return NotFound("can't find ticket");
 
-            return Ok(mapper.Map<TicketDto>(ticket));
+            return Ok(ticket);
         }
 
         [Authorize(Policy = "RequireAdminRole")]

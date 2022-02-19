@@ -7,6 +7,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using webapi.Data;
 using webapi.Entities;
+using webapi.Filters;
+using webapi.Helper;
+using webapi.Services;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -18,19 +21,23 @@ namespace webapi.Controllers
 
         private readonly IMapper mapper;
 
-        public SystemController(DataContext dataContext, IMapper mapper)
+        private readonly DropdownResult dropdownResult;
+
+        public SystemController(DataContext dataContext, IMapper mapper, DropdownResult dropdownResult)
         {
             this.dataContext = dataContext;
 
             this.mapper = mapper;
+
+            this.dropdownResult = dropdownResult;
         }
 
-        [HttpGet("cities")]
-        public async Task<ActionResult<IEnumerable<City>>> GetCitiesAsync()
+        [HttpGet("dropdown-list")]
+        [ServiceFilter(typeof (DropdownDataFilter))]
+        public async Task<ActionResult> GetDropdownListAsync([FromQuery] string type, [FromServices] DropdownService dropdownService)
         {
-            var cities = await dataContext.City.OrderBy(n => n.CityName).ToListAsync();
-
-            return Ok(mapper.Map<IEnumerable<City>>(cities));
+            return Ok(await dropdownResult.GetDropdownList(dropdownService.GetCityListAsync, type));
+;             
         }
     }
 }

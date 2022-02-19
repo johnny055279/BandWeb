@@ -15,8 +15,6 @@ namespace webapi.Entities
 
         [Required]
 		public string CityName { get; set; }
-
-        public Ticket Ticket { get; set; }
     }
 }
 

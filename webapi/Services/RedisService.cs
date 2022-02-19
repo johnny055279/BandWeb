@@ -4,7 +4,7 @@ using webapi.Data;
 using webapi.Entities;
 using webapi.Interfaces;
 
-namespace webapi.Helper
+namespace webapi.Services
 {
 	public class RedisService : IRedisService
 	{

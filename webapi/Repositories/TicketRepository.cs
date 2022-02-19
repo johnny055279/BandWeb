@@ -50,9 +50,26 @@ namespace webapi.Repositories
             database.KeyDelete($"ticket_{ticket.Id}");
         }
 
-        public async Task<Ticket> GetTicketByIdAsync(int id)
+        public async Task<TicketDto> GetTicketByIdAsync(int id)
         {
-            return await dataContext.Tickets.Include(n => n.City).OrderByDescending(n =>n.ShowTime).SingleOrDefaultAsync(n => n.Id == id);
+            var ticket = await dataContext.Tickets.Include(n => n.City).Where(n => n.Id == id).Select(n => new TicketDto
+            {
+                Id = n.Id,
+                CityId = n.CityId,
+                CityName = n.City.CityName,
+                ShowTime = n.ShowTime,
+                Price = n.Price,
+                RemainNumber = n.RemainNumber,
+                CompleteShow = n.CompleteShow,
+                ImageUrl = n.ImageUrl,
+                Open = n.Open,
+                Title = n.Title,
+                SubTitle = n.SubTitle,
+                SoldOut = n.SoldOut,
+                PurchaseDeadLine = n.PurchaseDeadLine
+            }).SingleOrDefaultAsync();
+
+            return ticket;
         }
 
         public async Task<IEnumerable<TicketDto>> GetTicketsAsync(bool soldOut, bool completeShow)
@@ -75,7 +92,7 @@ namespace webapi.Repositories
                     SoldOut = n.SoldOut,
                     PurchaseDeadLine = n.PurchaseDeadLine
                 })
-                .ToListAsync();
+                .OrderByDescending(n => n.ShowTime).ToListAsync();
 
             return mapper.Map<IEnumerable<TicketDto>>(tickets);
         }

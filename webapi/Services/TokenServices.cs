@@ -11,7 +11,7 @@ using Microsoft.IdentityModel.Tokens;
 using webapi.Entities;
 using webapi.Interfaces;
 
-namespace webapi.Service
+namespace webapi.Services
 {
     public class TokenServices: ITokenServices
     {

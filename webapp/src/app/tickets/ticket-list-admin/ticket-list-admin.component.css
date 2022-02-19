@@ -1,0 +1,12 @@
+.mat-column-price,
+.mat-column-number,
+.mat-column-purchaseDeadLine,
+.mat-column-location,
+.mat-column-title,
+.mat-column-showTime,
+.mat-column-operate,
+.mat-column-showTime{
+  font-size: 18px;
+  vertical-align: middle;
+  font-weight: bold;
+}

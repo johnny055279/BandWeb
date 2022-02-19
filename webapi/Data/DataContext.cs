@@ -46,7 +46,7 @@ namespace webapi.Data
 
             modelBuilder.Entity<News>();
 
-            modelBuilder.Entity<Ticket>().HasOne(n => n.City).WithOne(n => n.Ticket).HasForeignKey<Ticket>(n => n.CityId);
+            modelBuilder.Entity<Ticket>().HasOne(n => n.City);
             
         }
     }

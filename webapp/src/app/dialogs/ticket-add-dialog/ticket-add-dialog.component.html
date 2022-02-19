@@ -20,7 +20,7 @@
         <mat-form-field appearance="fill">
             <mat-label>Choose an city</mat-label>
             <mat-select [(ngModel)]="ticket.cityId">
-                <mat-option *ngFor="let item of cities" value="{{item.id}}">{{item.name}}</mat-option>
+                <mat-option *ngFor="let item of cities" value="{{item.id}}">{{item.cityName}}</mat-option>
             </mat-select>
             <mat-hint>Hint</mat-hint>
             <mat-error>Please choose a city</mat-error>

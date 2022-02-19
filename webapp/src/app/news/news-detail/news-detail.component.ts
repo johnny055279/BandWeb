@@ -12,8 +12,8 @@ export class NewsDetailComponent implements OnInit {
     constructor(private route: ActivatedRoute) { }
 
     ngOnInit(): void {
-        this.route.data.subscribe(response => {
-            this.news = response.news;
+        this.route.data.subscribe(data => {
+            this.news = data.news;
         });
     }
 

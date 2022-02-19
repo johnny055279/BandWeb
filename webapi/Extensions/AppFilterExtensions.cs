@@ -10,6 +10,8 @@ namespace webapi.Extensions
 		{
 			services.AddScoped<LogUserActivityFilter>();
 
+			services.AddScoped<DropdownDataFilter>();
+
 			return services;
 		}
 	}

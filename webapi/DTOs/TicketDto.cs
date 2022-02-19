@@ -15,8 +15,10 @@ namespace webapi.DTOs
 		[Required]
 		public decimal Price { get; set; }
 		[Required]
+		[MaxLength(30)]
 		public string Title { get; set; }
 		[Required]
+		[MaxLength(20)]
 		public string SubTitle { get; set; }
 		[Required]
 		public int RemainNumber { get; set; }
@@ -30,6 +32,7 @@ namespace webapi.DTOs
 		[Required]
 		public string ImageUrl { get; set; }
 
+		[Required]
 		public DateTime PurchaseDeadLine { get; set; }
 	}
 }

@@ -1,19 +1,29 @@
 <div mat-dialog-content>
     <p>Sign up</p>
-    <mat-form-field appearance="fill">
-        <mat-label>Enter your account</mat-label>
-        <input matInput placeholder="Account" [(ngModel)]="data.account">
-    </mat-form-field>
-    <mat-form-field appearance="fill" class="me-3">
-        <mat-label>Enter your password</mat-label>
-        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" [(ngModel)]="data.password">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-            [attr.aria-pressed]="hide">
-            <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
-    </mat-form-field>
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Enter your account</mat-label>
+            <input matInput placeholder="Account" [(ngModel)]="data.account">
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="fill" class="me-3">
+            <mat-label>Enter your password</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" placeholder="Password" [(ngModel)]="data.password">
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+    </p>
 </div>
 <div mat-dialog-actions>
-    <button mat-button (click)="onNoClick()">CANCEL</button>
-    <button mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>LOGIN</button>
+    <button class="mx-auto" mat-raised-button color="primary" [mat-dialog-close]="data" cdkFocusInitial>LOGIN</button>
+    <button class="mx-auto" mat-button (click)="onNoClick()">CANCEL</button>
+
+</div>
+<div class="mt-3 text-center">
+    <p>or</p>
+    <button mat-raised-button color="accent" (click)="externalLogin()">Sign in with
+        Google</button>
 </div>
