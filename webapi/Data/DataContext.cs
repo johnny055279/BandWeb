@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using webapi.Entities;
+using webapi.Interfaces;
 
 namespace webapi.Data
 {
@@ -47,7 +48,7 @@ namespace webapi.Data
             modelBuilder.Entity<News>();
 
             modelBuilder.Entity<Ticket>().HasOne(n => n.City);
-            
+
         }
     }
 }

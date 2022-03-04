@@ -30,14 +30,11 @@ namespace webapi.Controllers
 
         private readonly IMapper mapper;
 
-        private readonly IHttpClientFactory clientFactory;
-
         private readonly IConfiguration configuration;
 
         public AccountController(SignInManager<AppUser> signInManager,
         UserManager<AppUser> userManager,
         ITokenServices tokenServices, IMapper mapper,
-        IHttpClientFactory clientFactory,
         IConfiguration configuration)
         {
             this.signInManager = signInManager;
@@ -47,8 +44,6 @@ namespace webapi.Controllers
             this.tokenServices = tokenServices;
 
             this.mapper = mapper;
-
-            this.clientFactory = clientFactory;
 
             this.configuration = configuration;
         }

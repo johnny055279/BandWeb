@@ -1,14 +1,14 @@
 ﻿using System;
 using System.Threading.Tasks;
 using webapi.Data;
+using webapi.DTOs;
+using webapi.Interfaces;
 
 namespace webapi.Helper
 {
-	public class DropdownResult
-	{
-		
-
-        public async Task<T> GetDropdownList<T, TType>(Func<Task<T>> func, TType anyType)
+    public class DropdownResult : IDropdownResult
+    {
+        public async Task<DropDownDto> GetDropdownList<T, TType>(Func<Task<T>> func, TType anyType)
         {
             var result = anyType switch
             {
@@ -17,7 +17,7 @@ namespace webapi.Helper
                 _ => throw new NotImplementedException()
             };
 
-            return result;
+            return result as DropDownDto;
         }
     }
 }

@@ -1,8 +1,10 @@
 ﻿using System;
+using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using webapi.Data;
+using webapi.Entities;
 using webapi.Helper;
 using webapi.Interfaces;
 using webapi.Repositories;
@@ -25,9 +27,9 @@ namespace webapi.Extensions
 
             services.AddScoped<IRedisService, RedisService>();
 
-            services.AddScoped<DropdownService>();
+            services.AddScoped<IDropdownService, DropdownService>();
 
-            services.AddScoped<DropdownResult>();
+            services.AddScoped<IDropdownResult, DropdownResult>();
 
             services.AddAutoMapper(typeof(AutoMapHelper).Assembly);
 

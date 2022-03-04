@@ -54,7 +54,7 @@ namespace webapi
 
             services.AddIdentityServicesExtension(Configuration);
 
-            services.AddStackExchangeRedisExtensions(Configuration);
+            //services.AddStackExchangeRedisExtensions(Configuration);
 
             services.AddAppFilterExtensions();
 

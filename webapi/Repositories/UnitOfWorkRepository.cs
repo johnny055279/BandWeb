@@ -14,20 +14,16 @@ namespace webapi.Repositories
 
         private readonly IMapper mapper;
 
-        private readonly IConnectionMultiplexer connectionMultiplexer;
-
-        public UnitOfWorkRepository(DataContext dataContext, IMapper mapper, IConnectionMultiplexer connectionMultiplexer)
+        public UnitOfWorkRepository(DataContext dataContext, IMapper mapper)
         {
             this.dataContext = dataContext;
 
             this.mapper = mapper;
-
-            this.connectionMultiplexer = connectionMultiplexer;
         }
 
         public IUserRepository UserRepository => new UserRepository(dataContext);
 
-        public ITicketRepository TicketRepository => new TicketRepository(dataContext, mapper, connectionMultiplexer);
+        public ITicketRepository TicketRepository => new TicketRepository(dataContext, mapper);
 
         public IPostRepository PostRepository => new PostRepository(dataContext);
 

@@ -20,18 +20,14 @@ namespace webapi.Repositories
 	{
         private readonly DataContext dataContext;
 
-        private readonly IConnectionMultiplexer connectionMultiplexer;
-
         private readonly IMapper mapper;
 
         private readonly IDatabase database;
 
-        public TicketRepository(DataContext dataContext, IMapper mapper, IConnectionMultiplexer connectionMultiplexer)
+        public TicketRepository(DataContext dataContext, IMapper mapper)
         {
             this.dataContext = dataContext;
             this.mapper = mapper;
-            this.connectionMultiplexer = connectionMultiplexer;
-            this.database = connectionMultiplexer.GetDatabase(0);
         }
 
         public void CreateTicket(Ticket ticket)
@@ -52,24 +48,41 @@ namespace webapi.Repositories
 
         public async Task<TicketDto> GetTicketByIdAsync(int id)
         {
-            var ticket = await dataContext.Tickets.Include(n => n.City).Where(n => n.Id == id).Select(n => new TicketDto
-            {
-                Id = n.Id,
-                CityId = n.CityId,
-                CityName = n.City.CityName,
-                ShowTime = n.ShowTime,
-                Price = n.Price,
-                RemainNumber = n.RemainNumber,
-                CompleteShow = n.CompleteShow,
-                ImageUrl = n.ImageUrl,
-                Open = n.Open,
-                Title = n.Title,
-                SubTitle = n.SubTitle,
-                SoldOut = n.SoldOut,
-                PurchaseDeadLine = n.PurchaseDeadLine
-            }).SingleOrDefaultAsync();
+            //var ticket = await dataContext.Tickets.Include(n => n.City).Where(n => n.Id == id).Select(n => new TicketDto
+            //{
+            //    Id = n.Id,
+            //    CityId = n.CityId,
+            //    CityName = n.City.CityName,
+            //    ShowTime = n.ShowTime,
+            //    Price = n.Price,
+            //    RemainNumber = n.RemainNumber,
+            //    CompleteShow = n.CompleteShow,
+            //    ImageUrl = n.ImageUrl,
+            //    Open = n.Open,
+            //    Title = n.Title,
+            //    SubTitle = n.SubTitle,
+            //    SoldOut = n.SoldOut,
+            //    PurchaseDeadLine = n.PurchaseDeadLine
+            //}).SingleOrDefaultAsync();
 
-            return ticket;
+            //return ticket;
+
+            return new TicketDto
+            {
+                Id = 1,
+                CityId = 1,
+                CityName = "Taipei",
+                ShowTime = DateTime.Parse("2022-03-18"),
+                Price = 60,
+                RemainNumber = 1000,
+                CompleteShow = false,
+                ImageUrl = "../../../assets/image/1234577.jpeg",
+                Open = true,
+                Title = "First Show of YUK",
+                SubTitle = "Come and have fun!",
+                SoldOut = false,
+                PurchaseDeadLine = DateTime.Parse("2022-03-01")
+            };
         }
 
         public async Task<IEnumerable<TicketDto>> GetTicketsAsync(bool soldOut, bool completeShow)

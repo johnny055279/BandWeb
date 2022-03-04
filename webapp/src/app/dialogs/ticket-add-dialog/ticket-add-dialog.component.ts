@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialogRef } from '@angular/material/dialog';
 import { TicketListAdminComponent } from 'src/app/tickets/ticket-list-admin/ticket-list-admin.component';
-import { City } from 'src/app/_models/city';
+import { DropDownList } from 'src/app/_models/dropdown';
 import { Ticket } from 'src/app/_models/ticket';
 import { SystemService } from 'src/app/_services/system.service';
 
@@ -26,11 +26,13 @@ export class TicketAddDialogComponent implements OnInit {
         imageUrl: '',
         purchaseDeadLine: new Date()
     }
-    cities?: City[];
+    cities?: DropDownList[];
     constructor(public dialogRef: MatDialogRef<TicketListAdminComponent>, private systemService: SystemService) { }
 
     ngOnInit(): void {
-        this.systemService.cities$.subscribe(cities => this.cities = cities);
+        this.systemService.dropDownList$.subscribe(dropdown => {
+            this.cities = dropdown.find(n => n.type == 'City')?.list;
+        });
     }
 
     onNoClick(): void {

@@ -5,11 +5,6 @@ namespace webapi.Entities
 {
 	public class City
 	{
-        public City(string cityName)
-        {
-            CityName = cityName;
-        }
-
         [Key]
         public int Id { get; set; }
 

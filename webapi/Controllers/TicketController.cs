@@ -15,12 +15,10 @@ namespace webapi.Controllers
 {  
     public class TicketController : BaseController
     {
-        private readonly IMapper mapper;
         private readonly IUnitOfWork unitOfWork;
 
-        public TicketController(IMapper mapper, IUnitOfWork unitOfWork)
+        public TicketController(IUnitOfWork unitOfWork)
         {
-            this.mapper = mapper;
             this.unitOfWork = unitOfWork;
         }
 

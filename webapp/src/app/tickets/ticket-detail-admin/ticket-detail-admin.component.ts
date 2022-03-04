@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
-import { City } from 'src/app/_models/city';
+import { DropDownList } from 'src/app/_models/dropdown';
 import { Ticket } from 'src/app/_models/ticket';
 import { SystemService } from 'src/app/_services/system.service';
 
@@ -11,7 +11,7 @@ import { SystemService } from 'src/app/_services/system.service';
 })
 export class TicketDetailAdminComponent implements OnInit {
     ticket?: Ticket;
-    cities?: City[];
+    cities?: DropDownList[];
     constructor(private route: ActivatedRoute, private systemService: SystemService) { }
 
     ngOnInit(): void {
@@ -22,9 +22,9 @@ export class TicketDetailAdminComponent implements OnInit {
     }
 
     getcities() {
-        this.systemService.cities$.subscribe(cities => {
-            this.cities = cities;
-        })
+        this.systemService.dropDownList$.subscribe(dropdown => {
+            this.cities = dropdown.find(n => n.type == 'City')?.list;
+        });
     }
 
 
