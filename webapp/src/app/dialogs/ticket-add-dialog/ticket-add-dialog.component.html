@@ -1,32 +1,68 @@
 <div mat-dialog-content>
     <p>Add new ticket</p>
     <p>
-        <mat-form-field appearance="legacy">
+        <mat-form-field hintLabel="Max 30 characters" appearance="legacy">
             <mat-label>Title</mat-label>
-            <input matInput type="text" [(ngModel)]="ticket.title">
-            <mat-hint>Hint</mat-hint>
-            <mat-error>Please select a date</mat-error>
+            <input matInput #title type="text" [(ngModel)]="ticket.title">
+            <mat-hint align="end">{{title.value?.length || 0}}/30</mat-hint>
+            <mat-error>Please enter title</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field hintLabel="Max 20 characters" appearance="legacy">
+            <mat-label>Subtitle</mat-label>
+            <input matInput #subTitle type="text" [(ngModel)]="ticket.subTitle">
+            <mat-hint align="end">{{subTitle.value?.length || 0}}/20</mat-hint>
+            <mat-error>Please enter subtitle</mat-error>
         </mat-form-field>
     </p>
     <p>
         <mat-form-field appearance="fill">
-            <mat-label>Choose a date</mat-label>
-            <input matInput [matDatepicker]="picker">
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
+            <mat-label>Show Time</mat-label>
+            <input matInput [matDatepicker]="picker1" [min]="minDate" [(ngModel)]="ticket.showTime">
+            <mat-datepicker-toggle matSuffix [for]="picker1"></mat-datepicker-toggle>
+            <mat-datepicker #picker1></mat-datepicker>
         </mat-form-field>
     </p>
     <p>
         <mat-form-field appearance="fill">
-            <mat-label>Choose an city</mat-label>
+            <mat-label>Purchase dead line</mat-label>
+            <input matInput [matDatepicker]="picker2" [min]="minDate" [(ngModel)]="ticket.purchaseDeadLine">
+            <mat-datepicker-toggle matSuffix [for]="picker2"></mat-datepicker-toggle>
+            <mat-datepicker #picker2></mat-datepicker>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="legacy">
+            <mat-label>Price</mat-label>
+            <input matInput type="number" min="0" step="0.01" [(ngModel)]="ticket.price">
+            <span matPrefix>$&nbsp;</span>
+            <mat-error>Please enter price</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <mat-form-field appearance="fill">
+            <mat-label>Location</mat-label>
             <mat-select [(ngModel)]="ticket.cityId">
                 <mat-option *ngFor="let item of cities" value="{{item.id}}">{{item.name}}</mat-option>
             </mat-select>
-            <mat-hint>Hint</mat-hint>
             <mat-error>Please choose a city</mat-error>
         </mat-form-field>
     </p>
+    <p>
+        <mat-form-field appearance="legacy">
+            <mat-label>Ticket Amount</mat-label>
+            <input matInput type="number" min="0" [(ngModel)]="ticket.remainNumber">
+            <mat-error>Please enter a number</mat-error>
+        </mat-form-field>
+    </p>
+    <p>
+        <label for="">Choose a picture</label><br />
+        <input type="file" (change)="setImageUrl($event)">
+    </p>
+    <img width="100%" *ngIf="tempImage" [src]="tempImage" accept="image/*" alt="fail to load image">
 </div>
+
 <div mat-dialog-actions>
     <button mat-button (click)="onNoClick()">CANCEL</button>
     <button mat-raised-button color="primary" [mat-dialog-close]="ticket" cdkFocusInitial>Add</button>

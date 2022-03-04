@@ -17,7 +17,6 @@ export class SystemService {
 
     getCities() {
         return this.http.get<DropDown>(this.baseUrl + "system/dropdown-list?type=city").pipe(map(cities => {
-            console.log(cities)
             if (!this.dropDown.find(n => n.type == 'City')) {
                 this.dropDown.push(cities);
                 this.dropDownSource.next(this.dropDown);

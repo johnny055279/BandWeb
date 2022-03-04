@@ -8,7 +8,7 @@ namespace webapi.Entities
 	[Table("Ticket")]
 	public class Ticket
 	{
-        public Ticket(DateTime showTime, int cityId, decimal price, string title, string subTitle, int remainNumber)
+        public Ticket(DateTime showTime, int cityId, decimal price, string title, string subTitle, int remainNumber, DateTime purchaseDeadLine, string imageBase64)
         {
             ShowTime = showTime;
             CityId = cityId;
@@ -16,6 +16,8 @@ namespace webapi.Entities
             Title = title;
             SubTitle = subTitle;
             RemainNumber = remainNumber;
+            PurchaseDeadLine = purchaseDeadLine;
+            ImageBase64 = imageBase64;
         }
 
         [Key]
@@ -48,7 +50,7 @@ namespace webapi.Entities
 
         public bool Open { get; set; } = false;
 
-        public string ImageUrl { get; set; }
+        public string ImageBase64 { get; set; }
 
         public ICollection<UserTicketOrder> TicketOrders { get; set; }
 

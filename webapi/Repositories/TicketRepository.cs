@@ -22,7 +22,7 @@ namespace webapi.Repositories
 
         private readonly IMapper mapper;
 
-        private readonly IDatabase database;
+        //private readonly IDatabase database;
 
         public TicketRepository(DataContext dataContext, IMapper mapper)
         {
@@ -32,7 +32,7 @@ namespace webapi.Repositories
 
         public void CreateTicket(Ticket ticket)
         {
-            database.StringSet($"ticket_{ticket.Id}", JsonSerializer.Serialize(ticket));
+            //database.StringSet($"ticket_{ticket.Id}", JsonSerializer.Serialize(ticket));
 
             dataContext.Add(ticket);
         }
@@ -43,7 +43,7 @@ namespace webapi.Repositories
 
             dataContext.Remove(ticket);
 
-            database.KeyDelete($"ticket_{ticket.Id}");
+            //database.KeyDelete($"ticket_{ticket.Id}");
         }
 
         public async Task<TicketDto> GetTicketByIdAsync(int id)
@@ -57,7 +57,7 @@ namespace webapi.Repositories
             //    Price = n.Price,
             //    RemainNumber = n.RemainNumber,
             //    CompleteShow = n.CompleteShow,
-            //    ImageUrl = n.ImageUrl,
+            //    ImageBase64 = n.ImageBase64,
             //    Open = n.Open,
             //    Title = n.Title,
             //    SubTitle = n.SubTitle,
@@ -76,7 +76,7 @@ namespace webapi.Repositories
                 Price = 60,
                 RemainNumber = 1000,
                 CompleteShow = false,
-                ImageUrl = "../../../assets/image/1234577.jpeg",
+                ImageBase64 = "",
                 Open = true,
                 Title = "First Show of YUK",
                 SubTitle = "Come and have fun!",
@@ -98,7 +98,7 @@ namespace webapi.Repositories
                     Price = n.Price,
                     RemainNumber = n.RemainNumber,
                     CompleteShow = n.CompleteShow,
-                    ImageUrl = n.ImageUrl,
+                    ImageBase64 = n.ImageBase64,
                     Open = n.Open,
                     Title = n.Title,
                     SubTitle = n.SubTitle,
@@ -116,7 +116,7 @@ namespace webapi.Repositories
 
             mapper.Map(ticketUpdateDto, ticket);
 
-            await database.StringSetAsync($"ticket_{id}", JsonSerializer.Serialize(ticket));
+            // await database.StringSetAsync($"ticket_{id}", JsonSerializer.Serialize(ticket));
 
             dataContext.Entry<Ticket>(ticket).State = EntityState.Modified;
         }
@@ -130,9 +130,9 @@ namespace webapi.Repositories
                 return false;
             }
 
-            var result = await database.GetOrSetAsync(id, redisService.GetTicketAsync);
+            // var result = await database.GetOrSetAsync(id, redisService.GetTicketAsync);
 
-            database.StringDecrement($"ticket_{id}", number);
+            // database.StringDecrement($"ticket_{id}", number);
 
             ticket.RemainNumber -= number;
 

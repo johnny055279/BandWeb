@@ -30,7 +30,7 @@ namespace webapi.DTOs
 		public bool Open { get; set; }
 
 		[Required]
-		public string ImageUrl { get; set; }
+		public string ImageBase64 { get; set; }
 
 		[Required]
 		public DateTime PurchaseDeadLine { get; set; }

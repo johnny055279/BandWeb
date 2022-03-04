@@ -22,6 +22,7 @@ namespace webapi.Controllers
             this.unitOfWork = unitOfWork;
         }
 
+        [Authorize]
         [HttpGet]
         public async Task<ActionResult<IEnumerable<TicketDto>>> GetTicketsAsync([FromQuery] bool soldOut, bool completeShow)
         {
@@ -44,7 +45,7 @@ namespace webapi.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateTicket(TicketDto ticketDto)
         {
-            var ticket = new Ticket(ticketDto.ShowTime, ticketDto.CityId, ticketDto.Price, ticketDto.Title, ticketDto.SubTitle, ticketDto.RemainNumber);
+            var ticket = new Ticket(ticketDto.ShowTime, ticketDto.CityId, ticketDto.Price, ticketDto.Title, ticketDto.SubTitle, ticketDto.RemainNumber, ticketDto.PurchaseDeadLine, ticketDto.ImageBase64);
 
             unitOfWork.TicketRepository.CreateTicket(ticket);
 

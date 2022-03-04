@@ -35,6 +35,7 @@ import { CheckRoleDirective } from './_directives/check-role.directive';
 import { TicketAddDialogComponent } from './dialogs/ticket-add-dialog/ticket-add-dialog.component';
 import { GoogleLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
 import { SocialLoginModule } from 'angularx-social-login';
+import { JwtInterceptor } from './_interceptors/jwt.interceptor';
 
 @NgModule({
     declarations: [
@@ -89,7 +90,9 @@ import { SocialLoginModule } from 'angularx-social-login';
                 },
             ],
         } as SocialAuthServiceConfig
-    }],
+    },
+    { provide: HTTP_INTERCEPTORS, useClass: JwtInterceptor, multi: true },
+    ],
     bootstrap: [AppComponent]
 })
 export class AppModule { }

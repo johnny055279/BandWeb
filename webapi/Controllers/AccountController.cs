@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Identity;
@@ -9,10 +7,6 @@ using webapi.Entities;
 using webapi.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using AutoMapper;
-using webapi.Filters;
-using System.Net.Http;
-using Microsoft.AspNetCore.Authentication;
-using Microsoft.AspNetCore.Authentication.Google;
 using Google.Apis.Auth;
 using Microsoft.Extensions.Configuration;
 
@@ -126,7 +120,7 @@ namespace webapi.Controllers
                     user = new AppUser { Email = payload.Email, UserName = payload.Email, Gender = "", NickName = "" };
 
                     await userManager.CreateAsync(user);
-                    //prepare and send an email for the email confirmation
+                    
                     await userManager.AddToRoleAsync(user, "Member");
 
                     await userManager.AddLoginAsync(user, info);

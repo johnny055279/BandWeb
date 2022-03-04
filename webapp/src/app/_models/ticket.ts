@@ -1,5 +1,5 @@
 export interface Ticket {
-    id: string,
+    id?: number,
     showTime: Date,
     cityId: string,
     cityName: string,
@@ -10,6 +10,6 @@ export interface Ticket {
     soldOut: boolean,
     completeShow: boolean,
     open: boolean,
-    imageUrl: string,
-    purchaseDeadLine: Date
+    imageBase64: string,
+    purchaseDeadLine: Date,
 }

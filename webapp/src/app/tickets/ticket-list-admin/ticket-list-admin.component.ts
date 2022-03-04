@@ -1,12 +1,15 @@
+import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { merge, Observable, of as observableOf } from 'rxjs';
+import { merge, of as observableOf } from 'rxjs';
 import { startWith, switchMap, catchError, map } from 'rxjs/operators';
 import { TicketAddDialogComponent } from 'src/app/dialogs/ticket-add-dialog/ticket-add-dialog.component';
 import { Ticket } from 'src/app/_models/ticket';
+import { SnackbarService } from 'src/app/_services/snackbar.service';
 import { TicketService } from 'src/app/_services/ticket.service';
+import { environment } from 'src/environments/environment';
 
 @Component({
     selector: 'app-ticket-list-admin',
@@ -16,14 +19,13 @@ import { TicketService } from 'src/app/_services/ticket.service';
 export class TicketListAdminComponent implements AfterViewInit {
     displayedColumns: string[] = ['number', 'showTime', 'title', 'location', 'price', 'purchaseDeadLine', 'operate'];
     data: Ticket[] = [];
-
     resultsLength = 0;
     isLoadingResults = true;
     isRateLimitReached = false;
-
+    baseUrl = environment.baseUrl;
     @ViewChild(MatPaginator) paginator!: MatPaginator;
     @ViewChild(MatSort) sort!: MatSort;
-    constructor(private ticketService: TicketService, public dialog: MatDialog) { }
+    constructor(private ticketService: TicketService, public dialog: MatDialog, private http: HttpClient, private snackbarService: SnackbarService) { }
 
     ngAfterViewInit(): void {
 
@@ -62,8 +64,14 @@ export class TicketListAdminComponent implements AfterViewInit {
             width: '500px',
         });
 
-        dialogRef.afterClosed().subscribe(response => {
+        dialogRef.afterClosed().subscribe((ticket: Ticket) => {
+            this.createTicket(ticket);
+        });
+    }
 
+    createTicket(ticket: Ticket) {
+        this.http.post(this.baseUrl + "ticket", ticket).subscribe(() => {
+            this.snackbarService.onSuccess('Success!');
         });
     }
 
