@@ -3,6 +3,7 @@ export interface News {
     title: string,
     subTitle: string,
     content: string,
-    imgUrl: string,
+    imageUrl: string,
+    image: File,
     postDate: Date,
 }

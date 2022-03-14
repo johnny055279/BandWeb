@@ -36,6 +36,7 @@ import { TicketAddDialogComponent } from './dialogs/ticket-add-dialog/ticket-add
 import { GoogleLoginProvider, SocialAuthServiceConfig } from 'angularx-social-login';
 import { SocialLoginModule } from 'angularx-social-login';
 import { JwtInterceptor } from './_interceptors/jwt.interceptor';
+import { NewsAddDialogComponent } from './dialogs/news-add-dialog/news-add-dialog.component';
 
 @NgModule({
     declarations: [
@@ -63,6 +64,7 @@ import { JwtInterceptor } from './_interceptors/jwt.interceptor';
         TicketDetailAdminComponent,
         CheckRoleDirective,
         TicketAddDialogComponent,
+        NewsAddDialogComponent,
     ],
     imports: [
         BrowserModule,

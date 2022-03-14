@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { NewsDetailComponent } from './news/news-detail/news-detail.component';
+import { NewsListComponent } from './news/news-list/news-list.component';
 import { RegistComponent } from './regist/regist.component';
 import { ShopMainComponent } from './shop/shop-main/shop-main.component';
 import { TicketDetailAdminComponent } from './tickets/ticket-detail-admin/ticket-detail-admin.component';
@@ -23,9 +24,9 @@ const routes: Routes = [
             { path: 'shop', component: ShopMainComponent },
             { path: 'tickets', component: TicketListComponent },
             { path: 'ticket/:id', component: TicketDetailComponent, resolve: { news: TicketDetailResolver } },
-            { path: 'admin/tickets', component: TicketListAdminComponent },
-            { path: 'admin/tickets/:id', component: TicketDetailAdminComponent, resolve: { ticket: TicketDetailResolver } }
-
+            { path: 'admin/tickets', component: TicketListAdminComponent, canActivate: [AdminGuard] },
+            { path: 'admin/tickets/:id', component: TicketDetailAdminComponent, resolve: { ticket: TicketDetailResolver }, canActivate: [AdminGuard] },
+            { path: 'admin/news', component: NewsListComponent, canActivate: [AdminGuard] }
         ]
     },
     { path: '**', component: Page404Component }

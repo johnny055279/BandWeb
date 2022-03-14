@@ -8,7 +8,7 @@ namespace webapi.Interfaces
 {
 	public interface ITicketRepository
 	{
-		void CreateTicket(Ticket ticket);
+		void CreateTicket(TicketDto ticketDto);
 
 		Task DeleteTicket(int id);
 

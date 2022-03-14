@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using webapi.DTOs;
 using webapi.Entities;
 
 namespace webapi.Interfaces
@@ -11,7 +12,7 @@ namespace webapi.Interfaces
 
 		Task<News> GetNewsByIdAsync(int id);
 
-		Task CreateNewsAsync(News news);
+		Task CreateNewsAsync(NewsDto newsDto);
 
 		void UpdateNews(News news);
 

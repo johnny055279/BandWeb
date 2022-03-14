@@ -30,9 +30,11 @@ namespace webapi.Repositories
             this.mapper = mapper;
         }
 
-        public void CreateTicket(Ticket ticket)
+        public void CreateTicket(TicketDto ticketDto)
         {
             //database.StringSet($"ticket_{ticket.Id}", JsonSerializer.Serialize(ticket));
+
+            var ticket = mapper.Map<Ticket>(ticketDto);
 
             dataContext.Add(ticket);
         }
@@ -76,7 +78,7 @@ namespace webapi.Repositories
                 Price = 60,
                 RemainNumber = 1000,
                 CompleteShow = false,
-                ImageBase64 = "",
+                ImageName = "",
                 Open = true,
                 Title = "First Show of YUK",
                 SubTitle = "Come and have fun!",
@@ -98,7 +100,7 @@ namespace webapi.Repositories
                     Price = n.Price,
                     RemainNumber = n.RemainNumber,
                     CompleteShow = n.CompleteShow,
-                    ImageBase64 = n.ImageBase64,
+                    ImageName = n.ImageName,
                     Open = n.Open,
                     Title = n.Title,
                     SubTitle = n.SubTitle,

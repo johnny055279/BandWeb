@@ -8,18 +8,6 @@ namespace webapi.Entities
 	[Table("Ticket")]
 	public class Ticket
 	{
-        public Ticket(DateTime showTime, int cityId, decimal price, string title, string subTitle, int remainNumber, DateTime purchaseDeadLine, string imageBase64)
-        {
-            ShowTime = showTime;
-            CityId = cityId;
-            Price = price;
-            Title = title;
-            SubTitle = subTitle;
-            RemainNumber = remainNumber;
-            PurchaseDeadLine = purchaseDeadLine;
-            ImageBase64 = imageBase64;
-        }
-
         [Key]
 		public int Id { get; set; }
         [DataType(DataType.Date)]
@@ -50,7 +38,7 @@ namespace webapi.Entities
 
         public bool Open { get; set; } = false;
 
-        public string ImageBase64 { get; set; }
+        public string ImageName { get; set; }
 
         public ICollection<UserTicketOrder> TicketOrders { get; set; }
 

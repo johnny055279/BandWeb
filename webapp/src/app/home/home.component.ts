@@ -8,12 +8,11 @@ import { NewsService } from '../_services/news.service';
     styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
+
     constructor(public newsService: NewsService, public busyService: BusyService) { }
 
     ngOnInit(): void {
         this.newsService.getNews().subscribe();
     }
-
-
 }
 

@@ -33,6 +33,4 @@ export class ToolbarComponent implements OnInit {
             if (response) this.login(response);
         });
     }
-
-
 }

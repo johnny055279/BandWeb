@@ -3,9 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using AutoMapper;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Caching.Memory;
 using webapi.DTOs;
 using webapi.Entities;
+using webapi.Helper;
 using webapi.Interfaces;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
@@ -18,17 +21,21 @@ namespace webapi.Controllers
 
         private readonly IUnitOfWork unitOfWork;
 
-        public NewsController(IMapper mapper, IUnitOfWork unitOfWork)
+        private readonly IMemoryCache memoryCache;
+
+        public NewsController(IMapper mapper, IUnitOfWork unitOfWork, IMemoryCache memoryCache)
         {
             this.mapper = mapper;
 
             this.unitOfWork = unitOfWork;
+
+            this.memoryCache = memoryCache;
         }
 
         [HttpGet]
         public async Task<ActionResult<IEnumerable<NewsDto>>> GetNewsAsync()
         {
-            var news = await unitOfWork.NewsRepository.GetNewsAsync();
+            var news = await MemoryCacheHelper.GetOrSetCache(MemoryCacheHelper.NewsDto, memoryCache, unitOfWork.NewsRepository.GetNewsAsync);
 
             return Ok(news);
         }
@@ -46,9 +53,9 @@ namespace webapi.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateNewsAsync(NewsDto newsDto)
         {
-            var news = mapper.Map<News>(newsDto);
+            if (newsDto.Image.Length > 0 == false) return BadRequest("Can't find image");
 
-            await unitOfWork.NewsRepository.CreateNewsAsync(news);
+            await unitOfWork.NewsRepository.CreateNewsAsync(newsDto);
 
             if (!await unitOfWork.Complete()) return BadRequest("Create news faild");
 
@@ -60,7 +67,7 @@ namespace webapi.Controllers
         {
             var news = await unitOfWork.NewsRepository.GetNewsByIdAsync(id);
 
-            mapper.Map(newsDto, news);
+            mapper.Map(news, newsDto);
 
             unitOfWork.NewsRepository.UpdateNews(news);
 

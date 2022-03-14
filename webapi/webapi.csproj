@@ -63,5 +63,15 @@
     <Folder Include="Filters\" />
     <Folder Include="ScheduleJobs\" />
     <Folder Include="Migrations\" />
+    <Folder Include="wwwroot\" />
+    <Folder Include="wwwroot\images\" />
+    <Folder Include="wwwroot\images\news\" />
+    <Folder Include="wwwroot\images\tickets\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Remove="wwwroot\" />
+    <Content Remove="wwwroot\images\" />
+    <Content Remove="wwwroot\images\news\" />
+    <Content Remove="wwwroot\images\tickets\" />
   </ItemGroup>
 </Project>

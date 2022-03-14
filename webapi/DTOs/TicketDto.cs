@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
+
 namespace webapi.DTOs
 {
 	public class TicketDto
@@ -29,8 +31,10 @@ namespace webapi.DTOs
 		[Required]
 		public bool Open { get; set; }
 
+		public string ImageName { get { return Image.FileName; } set { } }
+
 		[Required]
-		public string ImageBase64 { get; set; }
+		public IFormFile Image { get; set; }
 
 		[Required]
 		public DateTime PurchaseDeadLine { get; set; }

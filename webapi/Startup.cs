@@ -77,13 +77,13 @@ namespace webapi
 
             app.UseCors(policy => policy.AllowAnyHeader().AllowAnyMethod().WithOrigins("https://localhost:4200"));
 
+            app.UseFileServer();
+
             app.UseAuthentication();
 
             app.UseAuthorization();
 
             app.UseDefaultFiles();
-
-            app.UseStaticFiles();
 
             app.UseEndpoints(endpoints =>
             {

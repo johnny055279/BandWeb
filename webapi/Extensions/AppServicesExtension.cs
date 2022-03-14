@@ -33,6 +33,8 @@ namespace webapi.Extensions
 
             services.AddAutoMapper(typeof(AutoMapHelper).Assembly);
 
+            services.AddMemoryCache();
+
             services.AddDbContext<DataContext>(option =>
             {
                 option.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));

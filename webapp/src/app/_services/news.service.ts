@@ -12,13 +12,19 @@ export class NewsService {
     baseUrl = environment.baseUrl;
     newsListSource = new BehaviorSubject<News[]>([]);
     newList$ = this.newsListSource.asObservable();
-    constructor(private http: HttpClient,) { }
+    constructor(private http: HttpClient) { }
 
     getNews() {
         return this.http.get<News[]>(this.baseUrl + "news").pipe(map(response => {
-            if (response) return this.newsListSource.next(response);
+            if (response) {
+                this.setNews(response);
+            }
         }));
     };
+
+    setNews(news: Array<News>) {
+        this.newsListSource.next(news);
+    }
 
     getNewsById(id: string) {
         return this.http.get<News>(this.baseUrl + `news/${id}`);

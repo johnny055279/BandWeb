@@ -20,6 +20,8 @@ namespace webapi.Helper
             CreateMap<Post, PostDto>();
 
             CreateMap<PostUpdateDto, Post>();
+
+            CreateMap<NewsDto, News>();
         }
     }
 }

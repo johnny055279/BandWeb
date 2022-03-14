@@ -260,7 +260,7 @@ namespace webapi.Migrations
                     b.Property<string>("Content")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("ImgUrl")
+                    b.Property<string>("ImageUrl")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PostDate")
@@ -358,7 +358,7 @@ namespace webapi.Migrations
                     b.Property<bool>("CompleteShow")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ImageBase64")
+                    b.Property<string>("ImageName")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("Open")

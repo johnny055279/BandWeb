@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
+using Microsoft.AspNetCore.Http;
 
 namespace webapi.DTOs
 {
@@ -19,8 +20,10 @@ namespace webapi.DTOs
 		public int RemainNumber { get; set; }
 		[Required]
 		public bool Open { get; set; }
+
+		public string ImageName { get { return Image.FileName; } set { } }
 		[Required]
-		public string ImageUrl { get; set; }
+		public IFormFile Image { get; set; }
 	}
 }
 

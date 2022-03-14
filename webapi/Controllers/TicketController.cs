@@ -45,9 +45,7 @@ namespace webapi.Controllers
         [HttpPost]
         public async Task<ActionResult> CreateTicket(TicketDto ticketDto)
         {
-            var ticket = new Ticket(ticketDto.ShowTime, ticketDto.CityId, ticketDto.Price, ticketDto.Title, ticketDto.SubTitle, ticketDto.RemainNumber, ticketDto.PurchaseDeadLine, ticketDto.ImageBase64);
-
-            unitOfWork.TicketRepository.CreateTicket(ticket);
+            unitOfWork.TicketRepository.CreateTicket(ticketDto);
 
             if (!await unitOfWork.Complete()) return BadRequest("Fail to create ticket");
 
